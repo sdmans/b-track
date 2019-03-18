@@ -1,0 +1,52 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.request-data-view {
+    width: 300px;
+    padding: 20px;  
+}
+
+.database-data-view {
+    width: 300px;
+    padding: 20px;
+}
+
+div.database-data-view:not(:first-child) {
+    padding-top: 98px;
+}
+
+h2 {
+    text-align: center;
+}
+
+.outdated {
+ color: red;
+}
+
+.uptodate {
+color: blue;
+}
+
+.updated {
+color: green;
+}
+
+.button-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Bootstrap styles start here */
+.card {
+    margin-bottom: 20px;
+}
+
+
+

@@ -1,0 +1,79 @@
+<h2>Legislation View</h2>
+
+<!--<div class="container">
+<div>
+    <div *ngFor="let currentBill of currentBills" class="request-data-view">
+        <p><b>Title:</b> {{currentBill.title}}</p>
+        <p><b>Description</b></p>
+        <p>{{currentBill.description}}</p>
+        <p><b>Last Action:</b>{{currentBill.lastAction}}</p>
+    </div>
+</div> -->
+
+<!-- <div>
+    <div *ngFor="let bill of testBills" class="request-data-view">
+            <p><b>Number:</b> {{bill.bill.bill_number}}</p>
+            <p><b>ID:</b> {{bill.bill.bill_id}}</p>
+            <p><b>Description</b></p>
+            <p>{{bill.bill.description}}</p>
+            <p><b>History</b></p>
+            <div *ngFor="let history of bill.bill.history">
+                <p>{{history.date}} - {{history.action}}</p>
+            </div>
+        </div>
+    </div>
+
+<div>
+    <div *ngFor="let bill of databaseBillData" class="database-data-view">
+        <p [ngClass]="{'outdated': bill.upToDate}"><b>Number:</b> {{bill.bill_number}}</p>
+        <p><b>ID:</b> {{bill.id}}</p>
+        <p><b>Description</b></p>
+        <p>{{bill.description}}</p>
+        <p><b>History</b></p>
+        <div *ngFor="let history of bill.history">
+            <p>{{history.date}} - {{history.action}}</p>
+        </div> -->
+        <!-- <p [ngClass]="{'outdated': !bill.upToDate}"><b>Last Action:</b> {{bill.lastAction}}</p> -->
+        <!-- <input [(ngModel)]="bill.lastAction"> -->
+    <!-- </div>
+</div> -->
+
+<div class="container">
+
+
+<div *ngIf="_isLoggedIn">
+    <div *ngFor="let bill of databaseBillData | async">
+
+      <div *ngIf="currentUser.id === bill.userId" class="card">
+          <div class="card-body">
+                <h4 class="card-title">{{bill.bill_number}}</h4>
+                <hr>
+                <p>{{bill.description}}</p>
+                <p><b>State:</b> {{bill.state}}</p>
+                <p class="card-text"><b>Last Action:</b> {{bill.lastAction.date}} - {{bill.lastAction.action}}</p>
+                <p class="card-text"><b>History</b></p>
+                    <div *ngFor="let item of bill.history">
+                        <p class="card-text"><b>{{item.date}}</b> - {{item.action}}</p>
+                    </div>
+                <p class="card-text"><b>Category:</b> {{bill.category | uppercase}}</p>
+                <!-- <p class="card-text"><b>userId:</b> {{bill.userId}}</p>
+                <p class="card-text"><b>Unique Id: </b> {{bill.uniqueId}}</p> -->
+                <hr>
+                <button class="btn btn-danger" (click)="deleteBill(bill.uniqueId, bill.bill_number)">Delete</button>
+                <hr>
+            </div>
+      </div>
+
+    </div>
+
+    <div class="button-container">
+        <button class="btn btn-info" (click)="checkBills()">Check Bills</button>
+    </div>
+</div>
+
+</div><!-- Container ends here -->
+<div class="button-container">
+    <!-- <button (click)="checkBillData()">Check Data</button> -->
+    
+</div>
+

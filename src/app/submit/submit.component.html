@@ -1,0 +1,79 @@
+<h2>Legislation Search</h2>
+<p *ngIf="!_isLoggedIn" class="notification"><b><a routerLink="/login" routerLinkActive="active">Log in</a> to use additional features!</b></p>
+
+<!-- <form class="bill-search" (submit)="findBill(billId)">
+  <label for="bill">Search Bill ID</label>
+  <input #billId name="bill" type="text">
+  <button>Display Bill Data</button>
+</form> -->
+
+<form (submit)="findBill(billId)">
+    <fieldset>
+      <legend>Bill Search</legend>
+      <div class="form-group">
+          <label for="billId">Search Bill ID</label>
+          <input #billId type="billId" class="form-control" id="billId" aria-describedby="billId" placeholder="Enter bill ID">
+          <small id="emailHelp" class="form-text text-muted">You can find bill IDs through an API query</small>
+        </div>
+      <button type="submit" class="btn btn-primary">Search Bill</button>
+    </fieldset>
+  </form>
+
+  <!-- <span *ngIf="!billIdNumber">Enter a bill identifcation number</span></p> -->
+  <!-- <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Card title</h4>
+        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="card-link">Card link</a>
+        <a href="#" class="card-link">Another link</a>
+      </div>
+    </div> -->
+
+
+  <div *ngIf="billObject" class="card">
+
+    <div class="card-body">
+        <h3>Search Results</h3>
+        <h4 class="card-title">{{billObject.bill_number}}</h4>
+        <p><b>Bill ID:</b> {{billObject.id}}</p>
+        <p><b>State: {{billObject.state}}</b></p>
+        <p class="card-text"><b>Description:</b> {{billObject.description}}</p>
+
+        <!-- History should be something that you can expand instead of taking up space since it can have a lot of items -->
+        <p class="card-text"><b>Last Action:</b> {{billObject.lastAction.date}} - {{billObject.lastAction.action}}</p>
+        <p><b>History</b></p>
+        <div *ngFor="let item of billObject.history">
+          <p><b>{{item.date}}</b> - {{item.action}}</p>
+          <hr>
+        </div>
+        <p *ngIf="!_isLoggedIn" class="card-text notification"><b><a routerLink="/login" routerLinkActive="active">Log in</a> to track bills like this!</b></p>
+
+      <div *ngIf="_isLoggedIn">
+        <form #form (submit)="addBill(select, $event)">
+          <div class="form-group">
+            <label for="category-select">Select Bill Category</label>
+            <select class="form-control" id="category-select" #select>
+              <option value="Price Transparency">Rx Price Transparency</option>
+              <option value="Non-Medical Switching">Non-Medical Switching</option>
+              <option value="Step Therapy">Step Therapy</option>
+              <option value="Prior Authorization">Prior Authorization</option>
+              <option value="Price Gouging">Price Gouging</option>
+            </select>
+        </div>
+        <button class="btn btn-primary">Add to Collection</button>
+        </form>
+      </div>
+  </div>
+</div>
+
+<!-- <div class="form-group">
+    <label for="exampleSelect1">Example select</label>
+    <select class="form-control" id="exampleSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div> -->

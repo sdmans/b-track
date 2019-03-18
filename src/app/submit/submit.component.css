@@ -1,0 +1,32 @@
+h2 {
+  text-align: center;
+}
+
+a {
+  font-weight: bold;
+  color: darkblue;
+}
+
+form {
+  width: 600px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+/* Bootstrap Styles */
+
+.card {
+  max-width: 700px;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 60px;
+}
+
+.notification {
+  text-align: center;
+  color: darkcyan;
+}
+
+select {
+  max-width: 300px;
+}
