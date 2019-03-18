@@ -30,3 +30,7 @@ form {
 select {
   max-width: 300px;
 }
+
+.search-btn {
+  margin-bottom: 20px;
+}

@@ -27,7 +27,8 @@ h2 {
 }
 
 .outdated {
- color: red;
+ color: #FF355E;
+ font-weight: bold;
 }
 
 .uptodate {
@@ -46,6 +47,10 @@ color: green;
 /* Bootstrap styles start here */
 .card {
     margin-bottom: 20px;
+}
+
+.btn {
+    margin-left: 10px;
 }
 
 

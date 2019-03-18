@@ -30,6 +30,7 @@ databaseBillData: Observable<Bill[]>;
 // testArray = [];
 currentUser;
 _isLoggedIn: boolean;
+billStatus: boolean;
 
 
   constructor(private billService: BillDataService, private db: DatabaseService, private auth: AuthService) {
@@ -60,6 +61,26 @@ _isLoggedIn: boolean;
     //this.db.getStoredData().valueChanges().subscribe(data => console.log(data))
     // this.auth.createUser('bill', 'bill@bill.com', '12345'); 
     // this.addRetrievedBills();
+
+  }
+
+  toggleBillStatus(){
+    if(this.billStatus === undefined) {
+      this.billStatus = true
+    } else if (this.billStatus === true) {
+      this.billStatus = false;
+    } else if (this.billStatus === false) {
+      this.billStatus = true;
+    }
+  }
+
+  updateBill(billId, uniqueId) {
+    console.log(billId, uniqueId);
+    this.billService.getBills(billId).subscribe((bill) => {
+      let billRef = bill["bill"] 
+      console.log(billRef.bill_number);
+      console.table(billRef.history);
+    });
   }
 
   checkBills(userId) {
@@ -84,7 +105,6 @@ _isLoggedIn: boolean;
         });
     });
     /* Next, compare this bill to the bill from the http request. */
-
   }
 
   deleteBill(uniqueId, number): void {

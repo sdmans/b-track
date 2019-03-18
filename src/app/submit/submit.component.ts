@@ -17,6 +17,7 @@ export class SubmitComponent implements OnInit {
   billIdNumber;
   currentUser;
   _isLoggedIn: boolean;
+  // name = 'roger';
 
   billObject: Bill;//This will contain select information about the bill that the user has searched form the legiscan query.
   constructor(private billService: BillDataService, private db: DatabaseService,  private auth: AuthService, private router: Router) { 

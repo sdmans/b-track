@@ -9,15 +9,18 @@
 
 <form (submit)="findBill(billId)">
     <fieldset>
-      <legend>Bill Search</legend>
+      <legend >Bill Search</legend>
       <div class="form-group">
-          <label for="billId">Search Bill ID</label>
+          <label for="billId">Search Bill ID: {{billIdNumber}}</label>
           <input #billId type="billId" class="form-control" id="billId" aria-describedby="billId" placeholder="Enter bill ID">
           <small id="emailHelp" class="form-text text-muted">You can find bill IDs through an API query</small>
         </div>
-      <button type="submit" class="btn btn-primary">Search Bill</button>
+      <button type="submit" class="btn btn-primary search-btn">Search Bill</button>
     </fieldset>
   </form>
+
+  <!-- <input [(ngModel)]="billIdNumber" #ctrl="ngModel">
+  <p>{{billIdNumber}}</p> -->
 
   <!-- <span *ngIf="!billIdNumber">Enter a bill identifcation number</span></p> -->
   <!-- <div class="card">
