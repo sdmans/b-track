@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Bill } from '../shared/bill';
+import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs';
 import { from } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -82,21 +83,12 @@ export class DatabaseService {
     return billList;
   }
 
-  updateBill(billId, userId) {
-    console.log('Checking for updates');
-    console.log(billId);
-    this.billCollection.valueChanges().subscribe((collectedBills) => {
-      let allBills = from(collectedBills);
-      const userBills = allBills.pipe(filter(bill => bill.userId === userId && bill.id === billId));
-      userBills.subscribe((bill) => {
-        console.log(bill);
-        if(bill.isUpToDate) {
-          return;
-        } else {
-            bill.isUpToDate = false;
-        }
-      })
-    });
+  updateBill(uniqueId, currentLastAction) {
+    console.log('Checking for updates...');
+    console.log(uniqueId, currentLastAction);
+    this.afs.collection('bills').doc(`${uniqueId}`).update({lastAction: currentLastAction});
+    this.afs.collection('bills').doc(`${uniqueId}`).update({isUpToDate: true});
+    this.afs.collection('bills').doc(`${uniqueId}`).valueChanges().subscribe(bill => console.log(bill));
   }
 
   getStoredData() {

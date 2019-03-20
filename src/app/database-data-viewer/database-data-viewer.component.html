@@ -63,7 +63,7 @@
                 <!-- <p class="card-text"><b>userId:</b> {{bill.userId}}</p>
                 <p class="card-text"><b>Unique Id: </b> {{bill.uniqueId}}</p> -->
                 <hr>
-                <button *ngIf="billStatus" class="btn btn-success" (click)="updateBill(bill.id, bill.uniqueId)">Update Bill</button>
+                <button *ngIf="billStatus" class="btn btn-success" (click)="updateBill(bill.id, bill.lastAction, bill.uniqueId)">Update Bill</button>
                 <button class="btn btn-info" (click)="toggleBillStatus(bill.isUpToDate)">Check Status</button>
                 <button class="btn btn-danger" (click)="deleteBill(bill.uniqueId, bill.bill_number)">Delete</button>
                 <hr>

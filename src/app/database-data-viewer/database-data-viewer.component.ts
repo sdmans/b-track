@@ -74,12 +74,14 @@ billStatus: boolean;
     }
   }
 
-  updateBill(billId, uniqueId) {
+  updateBill(billId, lastAction, uniqueId) {
     console.log(billId, uniqueId);
+    console.log(lastAction)
     this.billService.getBills(billId).subscribe((bill) => {
       let billRef = bill["bill"] 
       console.log(billRef.bill_number);
       console.table(billRef.history);
+      this.billService.compareBills(billId, lastAction, uniqueId);
     });
   }
 
@@ -101,7 +103,7 @@ billStatus: boolean;
           let userId = bill.userId;
           // let uniqueId = bill.uniqueId; //This won't work because the valueChanges doesn't give an id
          
-          this.billService.compareBills(billId, lastAction, userId);
+          // this.billService.compareBills(billId, lastAction, userId);
         });
     });
     /* Next, compare this bill to the bill from the http request. */
