@@ -50,6 +50,7 @@ export class BillDataService {
         this.db.updateBill(uniqueId, currentLastAction);
       } else {
         console.log('lastAction is outdated');
+        this.db.updateBill(uniqueId, currentLastAction);
         /* takes uniqueId argument passed in from the main form the data-viewer method */
         // this.db.updateBill(billId, userId);
       }
