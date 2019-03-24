@@ -28,7 +28,7 @@ export class BillDataService {
     return request;
   }
 
-  compareBill(billId, lastAction, uniqueId): void {
+  compareBill(billId, lastAction, uniqueId, billStatus): void {
     /* Store the values to create the request string and pass it into the http request */
     let requestUrl = `${this.url}${billId}`;
     let request = this.http.get(requestUrl);
@@ -47,14 +47,18 @@ export class BillDataService {
       if (lastAction.action === currentLastAction.action && lastAction.date === currentLastAction.date) {
         /* Does nothing and logs status since the bill is upToDate */
         // this.db.updateBill(uniqueId, currentLastAction);
+        console.log(`Status is ${billStatus}`);
         console.log('Data Matches, your bill status is up-to-date!');
       } else {
         console.log('lastAction is outdated');
+        this.db.changeBillStatus(uniqueId);//Toggles to bill status to false if the above condition isn't met
+
         /* Function takes uniqueId argument passed in from the database-data-viewer-component updateBill method */
         /* It then sets the bill upToDate property to false */
-        this.db.updateBill(uniqueId, currentLastAction);
+        // this.db.updateBill(uniqueId, currentLastAction);
         // this.db.updateBill(billId, userId);
       }
     });
   }
+
 }

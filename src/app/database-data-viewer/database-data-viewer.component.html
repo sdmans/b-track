@@ -65,7 +65,7 @@
                 <p class="card-text"><b>Unique Id: </b> {{bill.uniqueId}}</p> -->
                 <hr>
                 <!-- Update button should be available only if billStatus is set to false -->
-                <button *ngIf="!bill.isUpToDate" class="btn btn-success" (click)="updateBill(bill.id, bill.lastAction, bill.uniqueId, bill.isUpToDate)">Update Bill</button>
+                <button class="btn btn-success" (click)="updateBill(bill.id, bill.lastAction, bill.uniqueId, bill.isUpToDate)">Update Bill</button>
                 <button class="btn btn-info" (click)="checkBillStatus(bill.uniqueId, bill.isUpToDate)">Check Status</button>
                 <button class="btn btn-danger" (click)="deleteBill(bill.uniqueId, bill.bill_number)">Delete</button>
                 <hr>

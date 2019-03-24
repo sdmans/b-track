@@ -65,9 +65,6 @@ _isLoggedIn: boolean;
   }
 
   checkBillStatus(uniqueId, billStatus) {
-    
-
-
     if (billStatus === undefined) {
       /* Function sets the bill to false */
       this.db.changeBillStatus(uniqueId);
@@ -78,20 +75,26 @@ _isLoggedIn: boolean;
     }
   }
 
-  updateBill(billId, lastAction, uniqueId) {
+  updateBill(billId, lastAction, uniqueId, billStatus) {
     console.log(`Checking status for ${billId}`);
     // console.log(billId, uniqueId);
     // console.log(lastAction)
 
     this.billService.getBills(billId).subscribe((bill) => {
-      let billRef = bill["bill"] 
+      let billRef = bill["bill"]; 
       // console.log(billRef.bill_number);
       console.table(billRef.history);
-      this.billService.compareBill(billId, lastAction, uniqueId);
+      this.billService.compareBill(billId, lastAction, uniqueId, billStatus);
     });
   }
 
-  /* Function below is supposed to check all bills at once, but it does not currently work properly. This maybe updated later */
+  deleteBill(uniqueId, number): void {
+    console.log(`Deleting bill number: ${number} with uniqueId: ${uniqueId}`);
+    this.db.deleteBill(uniqueId);
+    console.log('Bill deleted!');
+  }
+
+  /* Function below is supposed to check all bills at once, but it does not currently work. This maybe updated later */
   checkBills(userId) {
     console.log('Checking if bills are up-to-date...');
     const billCollection = this.db.getBillData().valueChanges();
@@ -114,12 +117,6 @@ _isLoggedIn: boolean;
         });
     });
     /* Next, compare this bill to the bill from the http request. */
-  }
-
-  deleteBill(uniqueId, number): void {
-    console.log(`Deleting bill number: ${number} with uniqueId: ${uniqueId}`);
-    this.db.deleteBill(uniqueId);
-    console.log('Bill deleted!');
   }
 
  /* This won't work if the array isn't consistent. You should find a way to redo the array so that it will change based on what's recieved

@@ -45,7 +45,7 @@ export class SubmitComponent implements OnInit {
       let billRef = bill["bill"];
       
       console.log(billRef.bill_number)
-
+/* Sets properties for the billObject based on the requested bill */
       this.billObject = {
         bill_number: billRef.bill_number,
         id: billRef.bill_id,
