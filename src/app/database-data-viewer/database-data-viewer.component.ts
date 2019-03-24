@@ -65,6 +65,9 @@ _isLoggedIn: boolean;
   }
 
   checkBillStatus(uniqueId, billStatus) {
+    
+
+
     if (billStatus === undefined) {
       /* Function sets the bill to false */
       this.db.changeBillStatus(uniqueId);
@@ -88,6 +91,7 @@ _isLoggedIn: boolean;
     });
   }
 
+  /* Function below is supposed to check all bills at once, but it does not currently work properly. This maybe updated later */
   checkBills(userId) {
     console.log('Checking if bills are up-to-date...');
     const billCollection = this.db.getBillData().valueChanges();

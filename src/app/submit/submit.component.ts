@@ -66,6 +66,7 @@ export class SubmitComponent implements OnInit {
     console.log("Bill type is: " + billType);
     
     this.billObject.category = billType;
+    this.billObject.isUpToDate = true;
     this.billObject.userId = this.currentUser.id;//Update with billType and User's id for display purposes.
 
     this.db.addBill(this.billObject);

@@ -46,7 +46,7 @@ export class BillDataService {
       /* Compare lastAction to retrieved bill's current last action stored in an object at position 0 in the history array */
       if (lastAction.action === currentLastAction.action && lastAction.date === currentLastAction.date) {
         /* Does nothing and logs status since the bill is upToDate */
-        this.db.updateBill(uniqueId, currentLastAction);
+        // this.db.updateBill(uniqueId, currentLastAction);
         console.log('Data Matches, your bill status is up-to-date!');
       } else {
         console.log('lastAction is outdated');
