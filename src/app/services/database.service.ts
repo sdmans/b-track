@@ -84,13 +84,17 @@ export class DatabaseService {
   }
   /* Create a function to toggle bill status. Then the update bill button should be available that will use the function below. This should help make the UI work properly */
 
+  changeBillStatus(uniqueId) {
+    /* If the bill is false, this should set the bill status to false so it can be updated with the second "Update Bill" button */
+    this.afs.collection('bills').doc(`${uniqueId}`).update({ isUpToDate: false });
+  }
+
+
   updateBill(uniqueId, currentLastAction) {
-    console.log(uniqueId, currentLastAction);
     console.log('Bill is outdated. Now updating...');
     /* Update bill to currentLastAction which is the current status form the request. Then sets the isUpToDate value to true */
     this.afs.collection('bills').doc(`${uniqueId}`).update({lastAction: currentLastAction});
     this.afs.collection('bills').doc(`${uniqueId}`).update({ isUpToDate: true });
-    
     this.afs.collection('bills').doc(`${uniqueId}`).valueChanges().subscribe((bill: Bill) => {
       if (bill.isUpToDate === true) {
         console.log("Bill is now up-to-date!", bill);

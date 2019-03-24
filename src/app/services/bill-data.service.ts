@@ -28,30 +28,31 @@ export class BillDataService {
     return request;
   }
 
-  compareBills(billId, lastAction, uniqueId): void {
+  compareBill(billId, lastAction, uniqueId): void {
+    /* Store the values to create the request string and pass it into the http request */
     let requestUrl = `${this.url}${billId}`;
     let request = this.http.get(requestUrl);
 
     request.subscribe((requestedBill) => {
       let billLastAction = requestedBill['bill'].history[0];
+      // console.log("Requested Bills: ", requestedBill);
 
-      console.log("Requested Bills: ", requestedBill)
-      /* Storing requested bill's last action to an object for easier reference */
+      /* Storing requested bill's last action in an object for easier reference */
       let currentLastAction = {
         date: billLastAction.date,
         action: billLastAction.action
       }
-      // console.log(currentLastAction);
 
-      /* Compare lastAction to retrieved bill's current last action */
+      /* Compare lastAction to retrieved bill's current last action stored in an object at position 0 in the history array */
       if (lastAction.action === currentLastAction.action && lastAction.date === currentLastAction.date) {
-        // console.log(currentLastAction);
-        console.log('Data Matches, your bill status is up-to-date!');
+        /* Does nothing and logs status since the bill is upToDate */
         this.db.updateBill(uniqueId, currentLastAction);
+        console.log('Data Matches, your bill status is up-to-date!');
       } else {
         console.log('lastAction is outdated');
+        /* Function takes uniqueId argument passed in from the database-data-viewer-component updateBill method */
+        /* It then sets the bill upToDate property to false */
         this.db.updateBill(uniqueId, currentLastAction);
-        /* takes uniqueId argument passed in from the main form the data-viewer method */
         // this.db.updateBill(billId, userId);
       }
     });

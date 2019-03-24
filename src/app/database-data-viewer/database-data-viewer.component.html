@@ -48,15 +48,16 @@
           <div class="card-body">
                 <h4 class="card-title">{{bill.bill_number}}</h4>
                 <hr>
-                <p>{{bill.description}}</p>
+                <p><b>Description:</b> {{bill.description}}</p>
                 <p><b>State:</b> {{bill.state}}</p>
                 <p class="card-text"><b>Last Action:</b> {{bill.lastAction.date}} - {{bill.lastAction.action}}</p>
-                <p class="card-text"><b>History</b></p>
+                <p class="card-text"><b><u>History</u></b></p>
                     <div *ngFor="let item of bill.history">
                         <p class="card-text"><b>{{item.date}}</b> - {{item.action}}</p>
                     </div>
                 <p class="card-text"><b>Category:</b> {{bill.category | uppercase}}</p>
-                <p *ngIf="billStatus" class="card-text outdated">Update Available!</p>
+                <p><b>Up-To-Date:</b> {{bill.isUpToDate}}</p>
+                <p *ngIf="!bill.isUpToDate" class="card-text outdated">Update Available!</p>
                 <!-- <p *ngIf="billStatus" class="card-text">Up To Date!</p> -->
                 <!-- <p *ngIf="!billStatus" class="card-text">Update Available!</p> -->
 
@@ -64,13 +65,12 @@
                 <p class="card-text"><b>Unique Id: </b> {{bill.uniqueId}}</p> -->
                 <hr>
                 <!-- Update button should be available only if billStatus is set to false -->
-                <button *ngIf="billStatus" class="btn btn-success" (click)="updateBill(bill.id, bill.lastAction, bill.uniqueId)">Update Bill</button>
-                <button class="btn btn-info" (click)="toggleBillStatus(bill.isUpToDate)">Check Status</button>
+                <button *ngIf="!bill.isUpToDate" class="btn btn-success" (click)="updateBill(bill.id, bill.lastAction, bill.uniqueId, bill.isUpToDate)">Update Bill</button>
+                <button class="btn btn-info" (click)="checkBillStatus(bill.uniqueId, bill.isUpToDate)">Check Status</button>
                 <button class="btn btn-danger" (click)="deleteBill(bill.uniqueId, bill.bill_number)">Delete</button>
                 <hr>
             </div>
       </div>
-
     </div>
 
     <div class="button-container">

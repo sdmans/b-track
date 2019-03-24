@@ -30,7 +30,7 @@ databaseBillData: Observable<Bill[]>;
 // testArray = [];
 currentUser;
 _isLoggedIn: boolean;
-billStatus: boolean;
+// billStatus: boolean;
 
 
   constructor(private billService: BillDataService, private db: DatabaseService, private auth: AuthService) {
@@ -64,24 +64,27 @@ billStatus: boolean;
 
   }
 
-  toggleBillStatus(){
-    if(this.billStatus === undefined) {
-      this.billStatus = true
-    } else if (this.billStatus === true) {
-      this.billStatus = false;
-    } else if (this.billStatus === false) {
-      this.billStatus = true;
+  checkBillStatus(uniqueId, billStatus) {
+    if (billStatus === undefined) {
+      /* Function sets the bill to false */
+      this.db.changeBillStatus(uniqueId);
+    } else if (billStatus === false) {
+      console.log("This bill is outdated, click the Update Bill button!");
+    } else {
+      console.log("Looks like the bill is up-to-date!", billStatus);
     }
   }
 
   updateBill(billId, lastAction, uniqueId) {
-    console.log(billId, uniqueId);
-    console.log(lastAction)
+    console.log(`Checking status for ${billId}`);
+    // console.log(billId, uniqueId);
+    // console.log(lastAction)
+
     this.billService.getBills(billId).subscribe((bill) => {
       let billRef = bill["bill"] 
-      console.log(billRef.bill_number);
+      // console.log(billRef.bill_number);
       console.table(billRef.history);
-      this.billService.compareBills(billId, lastAction, uniqueId);
+      this.billService.compareBill(billId, lastAction, uniqueId);
     });
   }
 
