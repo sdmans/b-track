@@ -36,6 +36,7 @@ _isLoggedIn: boolean;
   constructor(private billService: BillDataService, private db: DatabaseService, private auth: AuthService) {
     // this.currentBills = this.billService.getBillData();
     // this.databaseBillData = this.db.getBillData();
+
     firebase.auth().onAuthStateChanged((user) => {
       if (user !== null) {
         this.currentUser = this.auth.getCurrentUser(user)
