@@ -55,6 +55,8 @@ _isLoggedIn: boolean;
     
     // this.databaseBillData = this.db.getBillData().valueChanges();
     this.databaseBillData = this.db.getBillSnapshot();
+    /* In order to filter the bills from the observable above, I would need the userId */
+
     // this.db.getBillData().valueChanges().subscribe(data => console.log(data));
 
     // this.testRetrieveBills();
@@ -119,6 +121,11 @@ _isLoggedIn: boolean;
     });
     /* Next, compare this bill to the bill from the http request. */
   }
+
+
+  /* Find a way to get bills to perform an request for each instead of storing them to a database */
+
+  
 
  /* This won't work if the array isn't consistent. You should find a way to redo the array so that it will change based on what's recieved
   checkBillData() {
