@@ -36,7 +36,8 @@
       <div class="card-body">
         <h4 class="card-title">Instructions</h4>
         <p class="intro">An app for tracking specific state legislation using the <a href="https://legiscan.com/legiscan" target="_blank">Legiscan API</a></p>
-        <p>Create an account or log in to search and track legislation</p>
+        <p><a routerLink="/register">Create an account</a> or <a routerLink="/login">log in</a> to search and track legislation</p>
+        <p>The bill IDs are available through a request for each state, but here are a few sample numbers to try out: 1057177, 1112900, 968893.</p>
         <p *ngIf="_isLoggedIn">Currently logged in as <b>{{currentUser.email}}</b></p>
       </div>
     </div>
