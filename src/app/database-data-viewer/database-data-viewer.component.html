@@ -1,5 +1,7 @@
-<h2>Legislation View</h2>
+<p class="notify" *ngIf="_isLoggedIn">Currently logged in as <b>{{currentUser.email}}</b></p>
 
+<h2>Legislation View</h2>
+<p class="notification">When logged in, view tracked legislation here</p>
 <!--<div class="container">
 <div>
     <div *ngFor="let currentBill of currentBills" class="request-data-view">
@@ -63,12 +65,15 @@
 
                 <!-- <p class="card-text"><b>userId:</b> {{bill.userId}}</p>
                 <p class="card-text"><b>Unique Id: </b> {{bill.uniqueId}}</p> -->
-                <hr>
+                
                 <!-- Update button should be available only if billStatus is set to false -->
-                <button class="btn btn-success" (click)="updateBill(bill.id, bill.lastAction, bill.uniqueId, bill.isUpToDate)">Update Bill</button>
-                <button class="btn btn-info" (click)="checkBillStatus(bill.uniqueId, bill.isUpToDate)">Check Status</button>
-                <button class="btn btn-danger" (click)="deleteBill(bill.uniqueId, bill.bill_number)">Delete</button>
-                <hr>
+                <div class="button-container">
+                    <hr>
+                    <button class="btn btn-success" (click)="updateBill(bill.id, bill.lastAction, bill.uniqueId, bill.isUpToDate)">Update Bill</button>
+                    <button class="btn btn-info" (click)="checkBillStatus(bill.uniqueId, bill.isUpToDate)">Check Status</button>
+                    <button class="btn btn-danger" (click)="deleteBill(bill.uniqueId, bill.bill_number)">Delete</button>
+                    <hr>
+                </div>
             </div>
       </div>
     </div>

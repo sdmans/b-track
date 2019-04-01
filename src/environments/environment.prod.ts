@@ -1,3 +1,5 @@
+/* fixed "Firebase does not exist" error with https://stackoverflow.com/questions/44033079/property-firebase-does-not-exist-on-type-production-boolean */
+
 export const environment = {
   production: true,
   firebase: {

@@ -3,15 +3,6 @@ ul {
 }
 
 nav {
-    margin-bottom: 40px;
-}
-
-.intro > a {
-    color: white;
-    font-weight: bold;
-}
-
-.title-header {
-    max-width: 800px;
-    margin: 0 auto;
+    padding: 10px 0px 10px 0px;
+    margin-bottom: 10px;
 }

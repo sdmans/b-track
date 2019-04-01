@@ -1,0 +1,32 @@
+h1 {
+    font-size: 32px;
+    margin: 0px;
+}
+
+h4 {
+    margin: 4px;
+}
+
+header {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #2C3E50;
+}
+
+p > a {
+    color: #91aac3;
+    font-weight: bold;
+}
+
+p > a:hover {
+    text-decoration: none;
+    color: #56799c;
+}
+
+.card-body {
+    padding: 0px 10px 10px 10px;
+}
+
+.card-body > p {
+    margin-bottom: 4px;
+}

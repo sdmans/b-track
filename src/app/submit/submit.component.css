@@ -1,10 +1,20 @@
 h2 {
   text-align: center;
+  font-size: 28px;
 }
 
-a {
+p.notification { 
+  color: black;
+}
+
+p.notification > a {
   font-weight: bold;
-  color: darkblue;
+  color: #2C3E50
+}
+
+p.notification > a:hover {
+  text-decoration: none;
+  color: #56799c;
 }
 
 form {

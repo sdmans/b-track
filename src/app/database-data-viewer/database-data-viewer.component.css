@@ -1,11 +1,15 @@
+h2 {
+    font-size: 28px;
+    text-align: center;
+}
+
+p.notification {
+    text-align: center;
+}
+
 .container {
     display: flex;
     justify-content: space-around;
-}
-
-.button-container {
-    display: flex;
-    justify-content: center;
 }
 
 .request-data-view {
@@ -22,10 +26,6 @@ div.database-data-view:not(:first-child) {
     padding-top: 98px;
 }
 
-h2 {
-    text-align: center;
-}
-
 .outdated {
  color: #FF355E;
  font-weight: bold;
@@ -39,10 +39,10 @@ color: blue;
 color: green;
 }
 
-.button-container {
-    margin-top: 20px;
-    margin-bottom: 20px;
+.notify {
+    text-align: center;
 }
+
 
 /* Bootstrap styles start here */
 .card {
@@ -50,8 +50,19 @@ color: green;
 }
 
 .btn {
-    margin-left: 10px;
+    margin: 10px;
 }
+
+/* Boostrap Media Query Details
+Small devices (tablets, 768px and up)
+
+Medium devices (desktops, 992px and up)
+Note: Hamburger menu appears below 992px
+
+Large devices (large desktops, 1200px and up)
+*/
+
+/* Media Queries Start Here */
 
 
 
