@@ -1,2 +1,9 @@
 <h2>Current Bill Information</h2>
+<p *ngIf="currentUser">Currently logged in as <b>{{currentUser.name}}</b></p>
 
+<div *ngFor="let bill of displayedBills" class="card">
+<h4><b>{{bill.title}}</b></h4>
+<p>{{bill.description}}</p>
+<p>{{bill.lastAction}}</p>
+<p><sub>{{bill.userId}}</sub></p>
+</div>

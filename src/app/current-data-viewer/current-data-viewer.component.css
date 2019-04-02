@@ -2,3 +2,17 @@ h2 {
     text-align: center;
     font-size: 28px;
 }
+
+h4 {
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}
+
+.card {
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 10px;
+}

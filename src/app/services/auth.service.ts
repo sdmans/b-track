@@ -5,13 +5,15 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable } from 'rxjs';
 import * as firebase from 'firebase/app';
 import { map } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  currentUser;
 
-  constructor(private db: DatabaseService, private afdb: AngularFireDatabase, private auth: AuthService) { }
+  constructor(private db: DatabaseService, private afdb: AngularFireDatabase, public afAuth: AngularFireAuth) { }
 
   createUser(email, password) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -45,6 +47,23 @@ export class AuthService {
     currentUser = {id: user.uid, name: user.email, email: user.email};
     // console.log(currentUser);
     return  currentUser;
+  }
+
+  isLoggedIn() {
+    return this.afAuth.authState.pipe(first()).toPromise();
+  }
+
+  /* Figuring out a better method for getting the currentUser Source: https://angularfirebase.com/snippets/check-if-current-user-exists-with-angularfire/ */
+  
+  async getUser() {
+    const user = await this.isLoggedIn()
+    if (user) {
+      this.currentUser = user;
+      console.log(this.currentUser);
+    } else {
+      console.log('User not found')
+      return;
+    }
   }
 
   signOut() {
