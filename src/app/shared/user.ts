@@ -1,7 +1,7 @@
 export interface User {
     name: string,
     email: string,
-    userId: string,
+    id: string,
     billCollection?: any[],
     dateCreated?: string,
 }

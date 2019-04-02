@@ -62,9 +62,9 @@
                 <p *ngIf="!bill.isUpToDate" class="card-text outdated">Update Available!</p>
                 <!-- <p *ngIf="billStatus" class="card-text">Up To Date!</p> -->
                 <!-- <p *ngIf="!billStatus" class="card-text">Update Available!</p> -->
-
-                <!-- <p class="card-text"><b>userId:</b> {{bill.userId}}</p>
-                <p class="card-text"><b>Unique Id: </b> {{bill.uniqueId}}</p> -->
+                <p><b>Bill ID:</b> {{bill.id}}</p>
+                <p class="card-text"><b>userId:</b> {{bill.userId}}</p>
+                <p class="card-text"><b>Unique Id: </b> {{bill.uniqueId}}</p>
                 
                 <!-- Update button should be available only if billStatus is set to false -->
                 <div class="button-container">

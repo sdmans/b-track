@@ -3,6 +3,7 @@ import { User } from '../shared/user';
 import { AuthService } from '../services/auth.service';
 import { from } from 'rxjs';//To turn testArray into an observable
 import { filter } from 'rxjs/operators';
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'app-current-data-viewer',
@@ -12,6 +13,7 @@ import { filter } from 'rxjs/operators';
 export class CurrentDataViewerComponent implements OnInit {
   currentUser: User;
   displayedBills = [];
+  _isLoggedIn: boolean;
 
   currentBills = [
     {
@@ -37,12 +39,33 @@ export class CurrentDataViewerComponent implements OnInit {
   constructor(private auth: AuthService) { }
 
   ngOnInit() {
-   this.auth.isLoggedIn().then((user) => {
-    //  console.log(user);
-     this.currentUser = {name: user.email, email: user.email, userId: user.uid}
-     console.log(this.currentUser);
-     this.retrieveTestData();
-    });
+  //  this.auth.isLoggedIn().then((user) => {
+  //   //  console.log(user);
+  //    this.currentUser = {name: user.email, email: user.email, userId: user.uid}
+  //    console.log(this.currentUser);
+  //    this.retrieveTestData();
+  //    this._isLoggedIn = true;
+  //   }).catch((err) => {
+  //     console.log('Not current logged in')
+  //     this._isLoggedIn = false;
+  //     return;
+  //   });
+
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user !== null) {
+      this.currentUser = this.auth.getCurrentUser(user)
+      console.log(this.currentUser);
+      this.retrieveTestData();
+      this._isLoggedIn = true;
+      // console.log(this.displayedBills)
+      return;
+    } else {
+      this._isLoggedIn = false;
+      console.log('not currently signed in!');
+      return;
+    }
+  });
+  
     
   }
 
@@ -50,8 +73,8 @@ export class CurrentDataViewerComponent implements OnInit {
     const testBills = from(this.currentBills);//currentBills as an observable sequence https://www.learnrxjs.io/operators/creation/from.html
   /* rxjs Filter documenation  https://www.learnrxjs.io/operators/filtering/filter.html */
 
-  testBills.pipe(filter((bill) => bill.userId === this.currentUser.userId)).subscribe((userBill) => {
-    // console.log(userBill);
+  testBills.pipe(filter((bill) => bill.userId === this.currentUser.id)).subscribe((userBill) => {
+    console.log(userBill);
     this.displayedBills.push(userBill);
     console.log(this.displayedBills);
   });
