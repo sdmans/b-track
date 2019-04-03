@@ -67,6 +67,8 @@ _isLoggedIn: boolean;
 
   }
 
+  /* See if you can find a way to toggle classes using https://stackoverflow.com/questions/44535515/angular-ngclass-and-click-event-for-toggling-class */
+
   checkBillStatus(uniqueId, billStatus) {
     if (billStatus === undefined) {
       /* Function sets the bill to false */

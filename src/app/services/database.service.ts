@@ -104,11 +104,13 @@ export class DatabaseService {
     });
   }
 
-  getStoredData() {
-    /* 1/6/19 - Got Firebase Working! */
-    const dataRef = this.db.list('shopping-list');
-    return dataRef;
-  }
+
+  /* How to update users in Firebase https://firebase.google.com/docs/auth/web/manage-users#update_a_users_profile */
+  // getStoredData() {
+  //   /* 1/6/19 - Got Firebase Working! */
+  //   const dataRef = this.db.list('shopping-list');
+  //   return dataRef;
+  // }
 
 }
 
