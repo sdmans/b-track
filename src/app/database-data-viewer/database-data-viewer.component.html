@@ -1,7 +1,7 @@
 <p class="notify" *ngIf="_isLoggedIn">Currently logged in as <b>{{currentUser.email}}</b></p>
 
 <h2>Legislation View</h2>
-<p class="notification">When logged in, view tracked legislation here</p>
+<p *ngIf="!_isLoggedIn" class="notification">When logged in, view tracked legislation here</p>
 <!--<div class="container">
 <div>
     <div *ngFor="let currentBill of currentBills" class="request-data-view">

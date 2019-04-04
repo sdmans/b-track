@@ -1,6 +1,6 @@
 <h2>Current Bill Information</h2>
 <p *ngIf="_isLoggedIn" class="notification">Currently logged in as <b>{{currentUser.name}}</b></p>
-<p *ngIf="!_isLoggedIn"><a routerLink="/login">Log in</a> to view tracked legislation</p>
+<p *ngIf="!_isLoggedIn" class="notification"><a routerLink="/login">Log in</a> to view tracked legislation</p>
 
 <!-- Doesn't detect if the user has signed out. User other template to figure out how you handled this -->
 <div *ngIf="_isLoggedIn" class="bill-view">
