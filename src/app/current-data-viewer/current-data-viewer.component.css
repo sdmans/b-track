@@ -3,16 +3,13 @@ h2 {
     font-size: 28px;
 }
 
-h4 {
-    text-align: center;
-}
-
-p {
+.notification {
     text-align: center;
 }
 
 .card {
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto;
     margin-top: 10px;
+    margin-bottom: 10px;
 }

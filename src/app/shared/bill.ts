@@ -6,8 +6,9 @@ export interface Bill {
     description: string,
     history: [{}],
     lastAction: any;
-    committee?: string,
-    leg_link?: string,
+    status?: any,
+    committee?: any,
+    leg_url?: string,
     state_link?: string,
     category?: string,
     uniqueId?: string,
