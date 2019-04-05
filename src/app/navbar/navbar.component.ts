@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,7 @@ export class NavbarComponent implements OnInit {
   currentUser;
   _isLoggedIn: boolean;
 
-  constructor(private auth: AuthService) { 
+  constructor(private auth: AuthService, private router: Router) { 
     /* Code below checks whether the user is signed in and toggles _isLoggedIn property. */
     firebase.auth().onAuthStateChanged((user) => {
       if (user !== null) {
@@ -42,6 +43,7 @@ export class NavbarComponent implements OnInit {
     console.log("Signing out...")
     this.auth.signOut();
     this._isLoggedIn = false;
+    this.router.navigateByUrl('/bill-data-list')
   }
 
 }
