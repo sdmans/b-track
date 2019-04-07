@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { DatabaseService } from '../services/database.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,11 +10,11 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
+  currentUser;
+
   constructor(private auth: AuthService,  private router: Router) { }
 
-  ngOnInit() {
-    
-  }
+  ngOnInit() {}
 
   registerUser(email, pw, e) {
     e.preventDefault();

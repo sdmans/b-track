@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Bill } from '../shared/bill';
+import { User } from '../shared/user';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs';
 import { from } from 'rxjs';
@@ -44,9 +45,11 @@ export class DatabaseService {
   billData;
 
   private billCollection: AngularFirestoreCollection<Bill>
+  private userCollection: AngularFirestoreCollection<User>
 
   constructor(private db: AngularFireDatabase, private afs: AngularFirestore) { 
     this.billCollection = afs.collection<Bill>('bills');//billCollection is now referencing space in the Firestore database.
+    this.userCollection = afs.collection<User>('users');//userCollection is now referencing space in the Firestore database.
   }
 
   /* Retrieves bill data */
@@ -102,6 +105,13 @@ export class DatabaseService {
         console.log("Bill was not updated, there was an issue", bill);
       }
     });
+  }
+
+  /* Logic for creating and updating users goes below here */
+  createUserData(userEmail, userId, creationDate) {
+    console.log(userEmail, userId, creationDate);
+    const newUser: User = {email: userEmail, id: userId, dateCreated: creationDate}
+    this.userCollection.add(newUser);
   }
 
 

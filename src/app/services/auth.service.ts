@@ -13,16 +13,23 @@ import { first } from 'rxjs/operators';
 export class AuthService {
   currentUser;
 
-  constructor(private db: DatabaseService, private afdb: AngularFireDatabase, public afAuth: AngularFireAuth) { }
+  constructor(private db: DatabaseService, private afdb: AngularFireDatabase, public afAuth: AngularFireAuth) { 
+    
+  }
 
   createUser(email, password) {
     firebase.auth().createUserWithEmailAndPassword(email, password)
     .catch(function(error) {
       var errorCode = error.code;
       var errorMessage = error.message;
-      console.log(errorCode, errorMessage);
-    });
-    return console.log('Creating user in database:', email, password);
+      return console.log(errorCode, errorMessage);
+    }).then(() => {
+      /* Waits for the creation to resolve, then creates the user with the getUser method in this same service */
+      console.log('Creating user in database:', email, password);
+      this.getUser();
+      return;
+    })
+    return;
   }
 
   signIn(email, password) {
@@ -60,6 +67,10 @@ export class AuthService {
     if (user) {
       this.currentUser = user;
       console.log(this.currentUser);
+      const creationDate = new Date();
+      /* Takes user data, when available, and creates User object based off of it */
+      this.db.createUserData(user.email, user.uid, creationDate);
+      return this.currentUser;
     } else {
       console.log('User not found')
       return;

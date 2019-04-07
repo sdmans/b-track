@@ -1,7 +1,7 @@
 export interface User {
-    name: string,
     email: string,
     id: string,
+    name?: string,
     billCollection?: any[],
     dateCreated?: string,
 }
