@@ -74,6 +74,18 @@ export class DatabaseService {
   addBill(billData: Bill) {
     console.log(billData);
     this.billCollection.add(billData);//Adds bill to Firestore bill collection
+    
+    const billObject = {id: billData.id, category: billData.category}//billObject contains the billId to use in a query and selected category. Push bill object into user's billCollection
+    /* Working with arrays on Firebase as of 2018 https://stackoverflow.com/questions/46757614/how-to-update-an-array-of-objects-with-firestore */
+    
+    const userRef = this.afs.collection('users').doc(`${billData.userId}`);//Reference to the user based on the logged in user's ID.
+    console.log(billObject);
+    console.log(billData.userId);
+    console.log(userRef);
+    userRef.update({
+      billCollection: firebase.firestore.FieldValue.arrayUnion({billObject})
+    });
+    
   }
 
   deleteBill(uniqueId) {
@@ -110,8 +122,12 @@ export class DatabaseService {
   /* Logic for creating and updating users goes below here */
   createUserData(userEmail, userId, creationDate) {
     console.log(userEmail, userId, creationDate);
-    const newUser: User = {email: userEmail, id: userId, dateCreated: creationDate}
-    this.userCollection.add(newUser);
+    const newUser: User = {email: userEmail, id: userId, dateCreated: creationDate, billCollection: []}
+    this.userCollection.doc(`${userId}`).set(newUser);
+  }
+
+  getUserData(userId) {
+    return this.userCollection.doc(`${userId}`).valueChanges();
   }
 
 

@@ -4,4 +4,5 @@ export interface User {
     name?: string,
     billCollection?: any[],
     dateCreated?: string,
+    firestoreId?: string
 }

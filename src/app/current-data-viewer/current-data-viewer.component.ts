@@ -3,6 +3,7 @@ import { User } from '../shared/user';
 import { Bill } from '../shared/bill';
 import { AuthService } from '../services/auth.service';
 import { BillDataService } from '../services/bill-data.service';
+import { DatabaseService } from './../services/database.service';
 
 import { from } from 'rxjs';//To turn testArray into an observable
 import { filter } from 'rxjs/operators';
@@ -43,7 +44,7 @@ export class CurrentDataViewerComponent implements OnInit {
 
 testIdArray = [1057177, 1112900, 968893];
 
-  constructor(private auth: AuthService, private billService: BillDataService) { }
+  constructor(private auth: AuthService, private billService: BillDataService, private db: DatabaseService) { }
 
   ngOnInit() {
   //  this.auth.isLoggedIn().then((user) => {
@@ -64,6 +65,9 @@ testIdArray = [1057177, 1112900, 968893];
         console.log(this.currentUser);
         this.retrieveTestData();
         this._isLoggedIn = true;
+        this.getUserBills(user.uid).subscribe((userData: User) => {
+          console.log(userData.billCollection);
+        });
         // console.log(this.displayedBills)
         return;
       } else {
@@ -115,5 +119,9 @@ testIdArray = [1057177, 1112900, 968893];
         console.log(this.displayedBills$);
       });
     })
+  }
+
+  getUserBills(userId) {
+    return this.db.getUserData(userId);
   }
 }
