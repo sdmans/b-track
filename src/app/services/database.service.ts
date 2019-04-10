@@ -78,7 +78,7 @@ export class DatabaseService {
     const billObject = {id: billData.id, category: billData.category}//billObject contains the billId to use in a query and selected category. Push bill object into user's billCollection
     /* Working with arrays on Firebase as of 2018 https://stackoverflow.com/questions/46757614/how-to-update-an-array-of-objects-with-firestore */
     
-    const userRef = this.afs.collection('users').doc(`${billData.userId}`);//Reference to the user based on the logged in user's ID.
+    let userRef = this.afs.collection('users').doc(`${billData.userId}`);//Reference to the user based on the logged in user's ID.
     console.log(billObject);
     console.log(billData.userId);
     console.log(userRef);
@@ -130,6 +130,28 @@ export class DatabaseService {
     return this.userCollection.doc(`${userId}`).valueChanges();
   }
 
+  removeBillFromCollection(billId, userId, billCategory) {
+    console.log(billId, userId);
+
+    let userRef = this.afs.collection('users').doc(`${userId}`);//Reference to the user based on the logged in user's ID.
+    // console.log(userRef);
+    let billObject = {category: billCategory, id: billId}
+
+    userRef.update({
+      billCollection: firebase.firestore.FieldValue.arrayRemove(billObject)
+    });
+
+    // userRef.valueChanges().subscribe((user: User) => {
+    //   user.billCollection.map((bill, index) => {
+    //     if(bill.billObject.id === billId) {
+    //       console.log(bill, index);
+    //       let newBillCollection = user.billCollection.splice(index, 1);
+    //       // console.log(newBillCollection);
+    //       userRef.update({billCollection: newBillCollection});
+    //     }
+    //   })
+    // });
+  }
 
   /* How to update users in Firebase https://firebase.google.com/docs/auth/web/manage-users#update_a_users_profile */
   // getStoredData() {

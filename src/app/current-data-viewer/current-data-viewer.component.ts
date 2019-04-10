@@ -65,15 +65,15 @@ testIdArray = [1057177, 1112900, 968893];
     firebase.auth().onAuthStateChanged((user) => {
       if (user !== null) {
         this.currentUser = this.auth.getCurrentUser(user)
-        console.log(this.currentUser);
+        // console.log(this.currentUser);
         this.retrieveTestData();
         this._isLoggedIn = true;
 
         /* Checks if a user is logged in and retrieves the user's billData */
         this.getUserBills(user.uid).subscribe((userData: User) => {
-          console.log(userData.billCollection);
+          // console.log(userData.billCollection);
           userData.billCollection.map((bill) => {
-            console.log(bill.billObject.id);
+            
             this.billService.getBills(bill.billObject.id).subscribe((billData) => {
               let billRef = billData["bill"];
               
@@ -88,13 +88,14 @@ testIdArray = [1057177, 1112900, 968893];
                   lastAction: billRef.history[0],
                   status: { status: billRef.status, date: billRef.status_date },
                   leg_url: billRef.url,
-                  state_url: billRef.state_link
+                  state_url: billRef.state_link,
+                  category: bill.billObject.category
                 }
               );
             });
           })
 
-          console.log(this.displayedUserBills$);
+          // console.log(this.displayedUserBills$);
         });
         // console.log(this.displayedBills)
         return;
@@ -104,7 +105,6 @@ testIdArray = [1057177, 1112900, 968893];
         return;
       }
     });
-
     this.retrieveTestDataById();
   }
 
@@ -114,9 +114,9 @@ testIdArray = [1057177, 1112900, 968893];
   /* rxjs Filter documenation  https://www.learnrxjs.io/operators/filtering/filter.html */
     
     testBills.pipe(filter((bill) => bill.userId === this.currentUser.id)).subscribe((userBill) => {
-      console.log(userBill);
+      // console.log(userBill);
       // this.displayedBills.push(userBill);
-      console.log(this.displayedBills);
+      // console.log(this.displayedBills);
     });
   }
 
@@ -151,5 +151,10 @@ testIdArray = [1057177, 1112900, 968893];
 
   getUserBills(userId) {
     return this.db.getUserData(userId);
+  }
+
+  removeBill(billId, billCategory) {
+    let userId = this.currentUser.id;
+    this.db.removeBillFromCollection(billId, userId, billCategory);
   }
 }

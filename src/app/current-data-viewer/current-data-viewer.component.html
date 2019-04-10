@@ -1,21 +1,28 @@
-<h2>Current Bill Information</h2>
+<h2>Request Based View</h2>
 <p *ngIf="_isLoggedIn" class="notification">Currently logged in as <b>{{currentUser.name}}</b></p>
 <p *ngIf="!_isLoggedIn" class="notification"><a routerLink="/login">Log in</a> to view tracked legislation</p>
 
 <!-- Doesn't detect if the user has signed out. User other template to figure out how you handled this -->
-<div *ngIf="_isLoggedIn" class="bill-view">
+<div *ngIf="_isLoggedIn && displayedUserBills$" class="bill-view">
     <div *ngFor="let bill of displayedUserBills$" class="card">
         <div class="card-body">
             <h4 class="card-title">{{bill.bill_number}}</h4>
             <hr>
             <p><b>Description:</b> {{bill.description}}</p>
             <p><b>State:</b> {{bill.state}}</p>
+            <p><b>Category:</b> {{bill.category}}</p>
             <p class="card-text"><b>Last Action:</b> {{bill.lastAction.date}} - {{bill.lastAction.action}}</p>
             <p class="card-text"><b><u>History</u></b></p>
             <div *ngFor="let item of bill.history">
                 <p class="card-text"><b>{{item.date}}</b> - {{item.action}}</p>
             </div>
             <!-- <p><b>Bill ID:</b> {{bill.id}}</p> -->
+            <div class="button-container">
+                <hr>
+                <!-- <button class="btn btn-danger" (click)="removeBill(bill.id, bill.category)">Stop Tracking</button>
+                <p><sub>Submit this bill again to continue tracking it</sub></p> -->
+                <hr>
+            </div>
         </div>
     </div>
 </div>

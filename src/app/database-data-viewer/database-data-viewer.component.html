@@ -1,44 +1,7 @@
 <p class="notify" *ngIf="_isLoggedIn">Currently logged in as <b>{{currentUser.email}}</b></p>
 
-<h2>Legislation View</h2>
+<h2>Database View</h2>
 <p *ngIf="!_isLoggedIn" class="notification">When logged in, view tracked legislation here</p>
-<!--<div class="container">
-<div>
-    <div *ngFor="let currentBill of currentBills" class="request-data-view">
-        <p><b>Title:</b> {{currentBill.title}}</p>
-        <p><b>Description</b></p>
-        <p>{{currentBill.description}}</p>
-        <p><b>Last Action:</b>{{currentBill.lastAction}}</p>
-    </div>
-</div> -->
-
-<!-- <div>
-    <div *ngFor="let bill of testBills" class="request-data-view">
-            <p><b>Number:</b> {{bill.bill.bill_number}}</p>
-            <p><b>ID:</b> {{bill.bill.bill_id}}</p>
-            <p><b>Description</b></p>
-            <p>{{bill.bill.description}}</p>
-            <p><b>History</b></p>
-            <div *ngFor="let history of bill.bill.history">
-                <p>{{history.date}} - {{history.action}}</p>
-            </div>
-        </div>
-    </div>
-
-<div>
-    <div *ngFor="let bill of databaseBillData" class="database-data-view">
-        <p [ngClass]="{'outdated': bill.upToDate}"><b>Number:</b> {{bill.bill_number}}</p>
-        <p><b>ID:</b> {{bill.id}}</p>
-        <p><b>Description</b></p>
-        <p>{{bill.description}}</p>
-        <p><b>History</b></p>
-        <div *ngFor="let history of bill.history">
-            <p>{{history.date}} - {{history.action}}</p>
-        </div> -->
-        <!-- <p [ngClass]="{'outdated': !bill.upToDate}"><b>Last Action:</b> {{bill.lastAction}}</p> -->
-        <!-- <input [(ngModel)]="bill.lastAction"> -->
-    <!-- </div>
-</div> -->
 
 <div class="container">
 
@@ -63,8 +26,8 @@
                 <!-- <p *ngIf="billStatus" class="card-text">Up To Date!</p> -->
                 <!-- <p *ngIf="!billStatus" class="card-text">Update Available!</p> -->
                 <p><b>Bill ID:</b> {{bill.id}}</p>
-                <p class="card-text"><b>userId:</b> {{bill.userId}}</p>
-                <p class="card-text"><b>Unique Id: </b> {{bill.uniqueId}}</p>
+                <!-- <p class="card-text"><b>userId:</b> {{bill.userId}}</p>
+                <p class="card-text"><b>Unique Id: </b> {{bill.uniqueId}}</p> -->
                 
                 <!-- Update button should be available only if billStatus is set to false -->
                 <div class="button-container">
