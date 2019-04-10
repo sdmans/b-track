@@ -4,7 +4,7 @@
 
 <!-- Doesn't detect if the user has signed out. User other template to figure out how you handled this -->
 <div *ngIf="_isLoggedIn" class="bill-view">
-    <div *ngFor="let bill of displayedBills$" class="card">
+    <div *ngFor="let bill of displayedUserBills$" class="card">
         <div class="card-body">
             <h4 class="card-title">{{bill.bill_number}}</h4>
             <hr>

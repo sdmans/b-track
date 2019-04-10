@@ -16,9 +16,12 @@ import * as firebase from 'firebase/app';
 })
 export class CurrentDataViewerComponent implements OnInit {
   currentUser: User;
-  displayedBills = [];
-  displayedBills$ = [];
-  _isLoggedIn: boolean;
+  _isLoggedIn: boolean;//boolean to toggle whether the user is signed in or not.
+  displayedBills = [];//displays bills using the retrieveTestData() method.
+  displayedBills$ = [];//displays bills using the retrieveTestDataById() method
+  displayedUserBills$ = [];//displays bills retreived from user data on Firebase.
+  
+  
   
 
   currentBills = [
@@ -65,8 +68,33 @@ testIdArray = [1057177, 1112900, 968893];
         console.log(this.currentUser);
         this.retrieveTestData();
         this._isLoggedIn = true;
+
+        /* Checks if a user is logged in and retrieves the user's billData */
         this.getUserBills(user.uid).subscribe((userData: User) => {
           console.log(userData.billCollection);
+          userData.billCollection.map((bill) => {
+            console.log(bill.billObject.id);
+            this.billService.getBills(bill.billObject.id).subscribe((billData) => {
+              let billRef = billData["bill"];
+              
+              this.displayedUserBills$.push(
+                {
+                  bill_number: billRef.bill_number, 
+                  id: billRef.bill_id,
+                  state: billRef.state,
+                  title: billRef.title,
+                  description: billRef.description,
+                  history: billRef.history,
+                  lastAction: billRef.history[0],
+                  status: { status: billRef.status, date: billRef.status_date },
+                  leg_url: billRef.url,
+                  state_url: billRef.state_link
+                }
+              );
+            });
+          })
+
+          console.log(this.displayedUserBills$);
         });
         // console.log(this.displayedBills)
         return;
@@ -84,10 +112,10 @@ testIdArray = [1057177, 1112900, 968893];
   retrieveTestData() {
     const testBills = from(this.currentBills);//currentBills as an observable sequence https://www.learnrxjs.io/operators/creation/from.html
   /* rxjs Filter documenation  https://www.learnrxjs.io/operators/filtering/filter.html */
-
+    
     testBills.pipe(filter((bill) => bill.userId === this.currentUser.id)).subscribe((userBill) => {
       console.log(userBill);
-      this.displayedBills.push(userBill);
+      // this.displayedBills.push(userBill);
       console.log(this.displayedBills);
     });
   }
@@ -97,7 +125,7 @@ testIdArray = [1057177, 1112900, 968893];
       
       this.billService.getBills(billId).subscribe((bill: Bill) => {
         // console.log(bill);
-        const billRef = bill["bill"];
+        let billRef = bill["bill"];
         /* Pushing each of the values from the Bill interface into an array of bills to be displayed */
         this.displayedBills$.push(
           {
@@ -116,7 +144,7 @@ testIdArray = [1057177, 1112900, 968893];
         
         // console.log(billRef.bill_number);
         // this.displayedBills$.push(bill)
-        console.log(this.displayedBills$);
+        // console.log(this.displayedBills$);
       });
     })
   }
