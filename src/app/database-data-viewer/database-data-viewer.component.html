@@ -1,8 +1,8 @@
-<p class="notify" *ngIf="_isLoggedIn">Currently logged in as <b>{{currentUser.email}}</b></p>
+
 
 <h2>Database View</h2>
 <p *ngIf="!_isLoggedIn" class="notification">When logged in, view tracked legislation here</p>
-
+<p class="notify" *ngIf="_isLoggedIn">Currently logged in as <b>{{currentUser.email}}</b></p>
 <div class="container">
 
 
