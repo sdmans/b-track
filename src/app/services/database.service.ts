@@ -137,6 +137,7 @@ export class DatabaseService {
     // console.log(userRef);
     let billObject = {category: billCategory, id: billId}
 
+    /* it may be easier to create bill objects and add user references to them. Then add the IDs by themselves to this collection so we can remove that since specifying objects seems to be more complicated */
     userRef.update({
       billCollection: firebase.firestore.FieldValue.arrayRemove(billObject)
     });

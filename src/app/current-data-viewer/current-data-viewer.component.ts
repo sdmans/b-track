@@ -101,7 +101,7 @@ testIdArray = [1057177, 1112900, 968893];
         return;
       } else {
         this._isLoggedIn = false;
-        console.log('not currently signed in!');
+        // console.log('not currently signed in!');
         return;
       }
     });

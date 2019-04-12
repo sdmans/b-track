@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import * as firebase from 'firebase/app';
 
-
 @Component({
   selector: 'app-submit',
   templateUrl: './submit.component.html',
@@ -17,7 +16,6 @@ export class SubmitComponent implements OnInit {
   billIdNumber;
   currentUser;
   _isLoggedIn: boolean;
-  // name = 'roger';
 
   billObject: Bill;//This will contain select information about the bill that the user has searched form the legiscan query.
   constructor(private billService: BillDataService, private db: DatabaseService,  private auth: AuthService, private router: Router) { 
@@ -44,7 +42,7 @@ export class SubmitComponent implements OnInit {
     this.billService.getBills(billId).subscribe((bill) => {
       let billRef = bill["bill"];
       
-      console.log(billRef.bill_number)
+      console.log(billRef.bill_number);
 /* Sets properties for the billObject based on the requested bill */
       this.billObject = {
         bill_number: billRef.bill_number,
