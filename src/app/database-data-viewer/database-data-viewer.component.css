@@ -43,6 +43,16 @@ color: green;
     text-align: center;
 }
 
+.notification > a {
+    color: #2C3E50;
+    font-weight: bold;
+}
+
+.notification > a:hover{
+    text-decoration: none;
+    color: #91aac3;
+}
+
 
 /* Bootstrap styles start here */
 .card {
