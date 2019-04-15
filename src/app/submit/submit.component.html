@@ -7,7 +7,7 @@
       <div class="form-group">
           <label for="billId">Search Bill ID: {{billIdNumber}}</label>
           <input #billId type="billId" class="form-control" id="billId" aria-describedby="billId" placeholder="Enter bill ID">
-          <small id="emailHelp" class="form-text text-muted">You can find bill IDs through an API query. Try out these sample IDs for a demonstration: 1057177, 1112900, 968893</small>
+          <small id="emailHelp" class="form-text text-muted">You can find bill IDs through an API query. Try out these sample IDs for a demonstration: 789, 794, 264</small>
 
         </div>
       <button type="submit" class="btn btn-primary search-btn">Search Bill</button>
@@ -34,18 +34,12 @@
           <hr>
         </div>
         <p *ngIf="!_isLoggedIn" class="card-text notification"><b><a routerLink="/login" routerLinkActive="active">Log in</a> to track bills like this!</b></p>
-
-      <div *ngIf="_isLoggedIn">
-        <form #form (submit)="addBill(select, $event)">
+        
+        <div *ngIf="_isLoggedIn">
+        <form #form (submit)="addBill(category, $event)">
           <div class="form-group">
-            <label for="category-select">Select Bill Category</label>
-            <select class="form-control" id="category-select" #select>
-              <option value="Price Transparency">Rx Price Transparency</option>
-              <option value="Non-Medical Switching">Non-Medical Switching</option>
-              <option value="Step Therapy">Step Therapy</option>
-              <option value="Prior Authorization">Prior Authorization</option>
-              <option value="Price Gouging">Price Gouging</option>
-            </select>
+            <label for="category">Bill Category</label>
+            <input #category type="text" class="form-control"> 
         </div>
         <button class="btn btn-primary">Add to Collection</button>
         </form>

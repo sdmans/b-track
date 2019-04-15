@@ -51,7 +51,7 @@ export class SubmitComponent implements OnInit {
         title: billRef.title,
         description: billRef.description,
         history: billRef.history,
-        lastAction: billRef.history[0]
+        lastAction: billRef.history[(billRef.history.length-1)]
       }
       console.log(this.billObject.lastAction);
     });
