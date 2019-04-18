@@ -13,19 +13,19 @@
           <div class="card-body">
                 <h4 class="card-title">{{bill.bill_number}}</h4>
                 <hr>
-                <p><b>Description:</b> {{bill.description}}</p>
                 <p><b>State:</b> {{bill.state}}</p>
+                <p><b>Description:</b> {{bill.description}}</p>
+                <p class="card-text"><b>Category:</b> {{bill.category | titlecase}}</p>
+                <p><b>Bill ID:</b> {{bill.id}}</p>
                 <p class="card-text"><b>Last Action:</b> {{bill.lastAction.date}} - {{bill.lastAction.action}}</p>
                 <p class="card-text"><b><u>History</u></b></p>
                     <div *ngFor="let item of bill.history">
                         <p class="card-text"><b>{{item.date}}</b> - {{item.action}}</p>
                     </div>
-                <p class="card-text"><b>Category:</b> {{bill.category | uppercase}}</p>
-                <p><b>Up-To-Date:</b> {{bill.isUpToDate}}</p>
+                <!-- <p><b>Up-To-Date:</b> {{bill.isUpToDate}}</p> -->
                 <p *ngIf="!bill.isUpToDate" class="card-text outdated">Update Available!</p>
                 <!-- <p *ngIf="billStatus" class="card-text">Up To Date!</p> -->
                 <!-- <p *ngIf="!billStatus" class="card-text">Update Available!</p> -->
-                <p><b>Bill ID:</b> {{bill.id}}</p>
                 <!-- <p class="card-text"><b>userId:</b> {{bill.userId}}</p>
                 <p class="card-text"><b>Unique Id: </b> {{bill.uniqueId}}</p> -->
                 

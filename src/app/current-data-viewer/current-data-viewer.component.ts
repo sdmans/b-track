@@ -85,7 +85,7 @@ testIdArray = [1057177, 1112900, 968893];
                   title: billRef.title,
                   description: billRef.description,
                   history: billRef.history,
-                  lastAction: billRef.history[0],
+                  lastAction: billRef.history[(billRef.history.length-1)],
                   status: { status: billRef.status, date: billRef.status_date },
                   leg_url: billRef.url,
                   state_url: billRef.state_link,
@@ -135,7 +135,7 @@ testIdArray = [1057177, 1112900, 968893];
             title: billRef.title,
             description: billRef.description,
             history: billRef.history,
-            lastAction: billRef.history[0],
+            lastAction: billRef.history[(billRef.history.length-1)],
             status: { status: billRef.status, date: billRef.status_date },
             leg_url: billRef.url,
             state_url: billRef.state_link
