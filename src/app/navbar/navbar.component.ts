@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
@@ -13,6 +13,9 @@ export class NavbarComponent implements OnInit {
 
   currentUser;
   _isLoggedIn: boolean;
+
+/* Documentation for ViewChild https://angular.io/api/core/ViewChild and ElementRef https://angular.io/api/core/ElementRef */
+  @ViewChild('navbarToggler') navbarToggler: ElementRef;//Targets the navbarToggler buttom element in the navbar component view
 
   constructor(private auth: AuthService, private router: Router) { 
     /* Code below checks whether the user is signed in and toggles _isLoggedIn property. */
@@ -44,6 +47,16 @@ export class NavbarComponent implements OnInit {
     this.auth.signOut();
     this._isLoggedIn = false;
     this.router.navigateByUrl('/bill-data-list')
+  }
+
+  navBarTogglerIsVisible() {
+    return this.navbarToggler.nativeElement.offsetParent !== null;//Checks if the navBarToggler button is visible and returns either true or false
+  }
+
+  collapseNav() {
+    if (this.navBarTogglerIsVisible()) {
+      this.navbarToggler.nativeElement.click();//If the navbarToggler is visisble determined by the method above, it clicks the element to close the tab
+    }
   }
 
 }

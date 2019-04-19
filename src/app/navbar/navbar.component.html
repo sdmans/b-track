@@ -8,27 +8,27 @@
 </nav> -->
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" #navbarToggler type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
       
         <div class="collapse navbar-collapse" id="navbarColor01">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" routerLink="/bill-data-list" routerLinkActive="active">Database View</a>
+                <a class="nav-link" routerLink="/bill-data-list" routerLinkActive="active" (click)="collapseNav()">Database View</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/current" routerLinkActive="active">Request View</a>
+              <a class="nav-link" routerLink="/current" routerLinkActive="active" (click)="collapseNav()">Request View</a>
           </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/submit" routerLinkActive="active">Bill Search</a>
+                <a class="nav-link" routerLink="/submit" routerLinkActive="active"(click)="collapseNav()">Bill Search</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
+                <a class="nav-link" routerLink="/register" routerLinkActive="active" (click)="collapseNav()">Register</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" *ngIf="_isLoggedIn" (click)="logOut($event)">Log Out</a>
-                <a class="nav-link" *ngIf="!_isLoggedIn" routerLink="/login" routerLinkActive="active">Log In</a>
+                <a class="nav-link" href="#" *ngIf="_isLoggedIn" (click)="logOut($event)" (click)="collapseNav()">Log Out</a>
+                <a class="nav-link" *ngIf="!_isLoggedIn" routerLink="/login" routerLinkActive="active" (click)="collapseNav()">Log In</a>
             </li>
           </ul>
         </div>
