@@ -1,6 +1,6 @@
 
 
-<h2>Database View</h2>
+<h2>Tracked Legislation Database View</h2>
 <p *ngIf="!_isLoggedIn" class="notification"><a routerLink="/login">Log in</a> to view tracked legislation from a database</p>
 <p class="notify" *ngIf="_isLoggedIn">Currently logged in as <b>{{currentUser.email}}</b></p>
 <div class="container">
@@ -11,14 +11,14 @@
 
       <div *ngIf="currentUser.id === bill.userId" class="card">
           <div class="card-body">
-                <h4 class="card-title">{{bill.bill_number}}</h4>
+                <h4 class="card-title">Bill Number: <a href="{{bill.leg_url}}" target="_blank">{{bill.bill_number}}</a> | ID {{bill.id}}</h4>
                 <hr>
+                <p><b>Description</b><br>{{bill.description}}</p>
                 <p><b>State:</b> {{bill.state}}</p>
-                <p><b>Description:</b> {{bill.description}}</p>
                 <p class="card-text"><b>Category:</b> {{bill.category | titlecase}}</p>
-                <p><b>Bill ID:</b> {{bill.id}}</p>
+                <!-- <p><b>Bill ID:</b> </p> -->
                 <p class="card-text"><b>Last Action:</b> {{bill.lastAction.date}} - {{bill.lastAction.action}}</p>
-                <p class="card-text"><b><u>History</u></b></p>
+                <p class="card-text"><b><u>Action History</u></b></p>
                     <div *ngFor="let item of bill.history">
                         <p class="card-text"><b>{{item.date}}</b> - {{item.action}}</p>
                     </div>

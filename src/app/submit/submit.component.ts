@@ -4,6 +4,7 @@ import { DatabaseService } from '../services/database.service';
 import { BillDataService } from './../services/bill-data.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { take } from 'rxjs/operators';
 import * as firebase from 'firebase/app';
 
 @Component({
@@ -39,11 +40,15 @@ export class SubmitComponent implements OnInit {
   findBill(id): void {
     let billId = id.value;
     this.billIdNumber = id.value;//retrieves the value form the template variable
-    this.billService.getBills(billId).subscribe((bill) => {
+    this.billService.getBills(billId)
+    .pipe(take(1))//Unsubscribes automatically after the first execution. From https://blog.angularindepth.com/the-best-way-to-unsubscribe-rxjs-observable-in-the-angular-applications-d8f9aa42f6a0
+      .subscribe((bill) => {
       let billRef = bill["bill"];
       
-      console.log(billRef.bill_number);
-/* Sets properties for the billObject based on the requested bill */
+      //Use this to check the bill data in the reponse 
+      // console.log(billRef);
+
+/* Sets properties for the billObject of type Bill, based on the requested bill's information. The properties below are from the exported bill.ts file. */
       this.billObject = {
         bill_number: billRef.bill_number,
         id: billRef.bill_id,
@@ -51,23 +56,26 @@ export class SubmitComponent implements OnInit {
         title: billRef.title,
         description: billRef.description,
         history: billRef.history,
-        lastAction: billRef.history[(billRef.history.length-1)]
+        lastAction: billRef.history[(billRef.history.length-1)],
+        state_link: billRef.state_link,
+        leg_url: billRef.url
       }
-      console.log(this.billObject.lastAction);
+      console.log(this.billObject);
+
     });
   }
 
   addBill(type, e) {
     e.preventDefault();
     // console.log(type);
-    const billType = type.value;//retrieves the value form the template variable
+    const billType = type.value;//retrieves the value from the template variable
     console.log("Bill type is: " + billType);
     
     this.billObject.category = billType;
     this.billObject.isUpToDate = true;
     this.billObject.userId = this.currentUser.id;//Update with billType and User's id for display purposes.
 
-    this.db.addBill(this.billObject);
+    this.db.addBill(this.billObject);//Addbill method takes the billObject produced by the request from the findBill method above, then 
     //this.billObject = undefined;//Reset the billObject after the query is finished.
     this.router.navigateByUrl('/bill-data-list');
 

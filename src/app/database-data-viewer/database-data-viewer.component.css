@@ -3,6 +3,10 @@ h2 {
     text-align: center;
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 p.notification {
     text-align: center;
 }
@@ -49,7 +53,6 @@ color: green;
 }
 
 .notification > a:hover{
-    text-decoration: none;
     color: #91aac3;
 }
 

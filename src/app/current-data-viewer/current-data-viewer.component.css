@@ -3,6 +3,10 @@ h2 {
     font-size: 28px;
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 .notification {
     text-align: center;
 }
@@ -13,12 +17,11 @@ h2 {
 }
 
 .notification > a:hover{
-    text-decoration: none;
     color: #91aac3;
 }
 
 .card {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
     margin-top: 10px;
     margin-bottom: 10px;

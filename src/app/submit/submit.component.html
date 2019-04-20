@@ -21,11 +21,11 @@
 
     <div class="card-body">
         <h3>Search Results</h3>
-        <h4 class="card-title">{{billObject.bill_number}}</h4>
-        <p><b>Bill ID:</b> {{billObject.id}}</p>
-        <p><b>State: {{billObject.state}}</b></p>
-        <p class="card-text"><b>Description:</b> {{billObject.description}}</p>
-
+        <h4 class="card-title">Bill Number: <a href="{{billObject.leg_url}}" target="_blank">{{billObject.bill_number}}</a> | ID {{billObject.id}}</h4>
+        <p class="card-text"><b>Description:</b><br> 
+        {{billObject.description}}</p>
+        <p><b>State:</b> {{billObject.state}}</p>
+        <!-- <p><b>Bill ID:</b> {{billObject.id}}</p> -->
         <!-- History should be something that you can expand instead of taking up space since it can have a lot of items -->
         <p class="card-text"><b>Last Action:</b> {{billObject.lastAction.date}} - {{billObject.lastAction.action}}</p>
         <p><b>History</b></p>
