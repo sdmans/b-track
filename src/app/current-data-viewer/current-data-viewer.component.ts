@@ -19,7 +19,7 @@ export class CurrentDataViewerComponent implements OnInit {
   _isLoggedIn: boolean;//boolean to toggle whether the user is signed in or not.
   displayedBills = [];//displays bills using the retrieveTestData() method.
   displayedBills$ = [];//displays bills using the retrieveTestDataById() method
-  displayedUserBills$ = [];//displays bills retreived from user data on Firebase.
+  displayedUserBills$ = [];//displays bills retrieved from user data on Firebase.
   
   
   
@@ -70,11 +70,12 @@ testIdArray = [1057177, 1112900, 968893];
         this._isLoggedIn = true;
 
         /* Checks if a user is logged in and retrieves the user's billData */
-        this.getUserBills(user.uid).subscribe((userData: User) => {
+        this.getUserBills(user.uid)
+          .subscribe((userData: User) => {
           // console.log(userData.billCollection);
 
+          /* I might need to adjust it since it might be making multiple subscriptions */
           userData.billCollection.map((billId) => {
-            console.log(billId);//Just the number is being passed in. See if you can figure out
             
             this.billService.getBills(billId).subscribe((billData) => {
               let billRef = billData["bill"];
@@ -159,5 +160,13 @@ testIdArray = [1057177, 1112900, 968893];
     let userId = this.currentUser.id;
     console.log(billId, userId)
     this.db.removeBillFromCollection(billId, userId);
+    console.log(this.displayedUserBills$);
+    this.displayedUserBills$.map((bill, index) => {
+      console.log(bill, index);
+      if (bill.id === billId) {
+        this.displayedUserBills$.splice(index, 1);
+        console.log(this.displayedUserBills$);
+      }
+    })
   }
 }

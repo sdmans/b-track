@@ -132,20 +132,15 @@ export class DatabaseService {
   }
 
   removeBillFromCollection(billId, userId) {
-    console.log(billId, userId);
-
     let userRef = this.afs.collection('users').doc(`${userId}`);//Reference to the user based on the logged in user's ID.
-    console.log(userRef);
 
     /* it may be easier to create bill objects and add user references to them. Then add the IDs by themselves to this collection so we can remove that since specifying objects seems to be more complicated */
+
+    /* The update below removes the selected billId from the user's collection */
     userRef.update({
       billCollection: firebase.firestore.FieldValue.arrayRemove(billId)
     });
-
-    this.afs.collection('users').doc('${userID').valueChanges()
-      .pipe(take(1))//Unsubscribes automatically after the first execution. From https://blog.angularindepth.com/the-best-way-to-unsubscribe-rxjs-observable-in-the-angular-applications-d8f9aa42f6a0
-      .subscribe(userData => console.log(userData));
-    }
+  }
 
   /* How to update users in Firebase https://firebase.google.com/docs/auth/web/manage-users#update_a_users_profile */
   // getStoredData() {
