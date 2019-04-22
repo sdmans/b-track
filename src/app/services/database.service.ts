@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { from } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 
 
 @Injectable({
@@ -75,7 +76,7 @@ export class DatabaseService {
     console.log(billData);
     this.billCollection.add(billData);//Adds bill to Firestore bill collection
     
-    const billObject = {id: billData.id, category: billData.category}//billObject contains the billId to use in a query and selected category. Push bill object into user's billCollection
+    const billObject = { id: billData.id, category: billData.category }//billObject contains the billId to use in a query and selected category. Push bill object into user's billCollection
     /* Working with arrays on Firebase as of 2018 https://stackoverflow.com/questions/46757614/how-to-update-an-array-of-objects-with-firestore */
     
     let userRef = this.afs.collection('users').doc(`${billData.userId}`);//Reference to the user based on the logged in user's ID.
@@ -83,7 +84,7 @@ export class DatabaseService {
     console.log(billData.userId);
     console.log(userRef);
     userRef.update({
-      billCollection: firebase.firestore.FieldValue.arrayUnion({billObject})
+      billCollection: firebase.firestore.FieldValue.arrayUnion(billData.id)//Attempting just the ID to see if it's easier to remove than an object.
     });
     
   }
@@ -130,29 +131,21 @@ export class DatabaseService {
     return this.userCollection.doc(`${userId}`).valueChanges();
   }
 
-  removeBillFromCollection(billId, userId, billCategory) {
+  removeBillFromCollection(billId, userId) {
     console.log(billId, userId);
 
     let userRef = this.afs.collection('users').doc(`${userId}`);//Reference to the user based on the logged in user's ID.
-    // console.log(userRef);
-    let billObject = {category: billCategory, id: billId}
+    console.log(userRef);
 
     /* it may be easier to create bill objects and add user references to them. Then add the IDs by themselves to this collection so we can remove that since specifying objects seems to be more complicated */
     userRef.update({
-      billCollection: firebase.firestore.FieldValue.arrayRemove(billObject)
+      billCollection: firebase.firestore.FieldValue.arrayRemove(billId)
     });
 
-    // userRef.valueChanges().subscribe((user: User) => {
-    //   user.billCollection.map((bill, index) => {
-    //     if(bill.billObject.id === billId) {
-    //       console.log(bill, index);
-    //       let newBillCollection = user.billCollection.splice(index, 1);
-    //       // console.log(newBillCollection);
-    //       userRef.update({billCollection: newBillCollection});
-    //     }
-    //   })
-    // });
-  }
+    this.afs.collection('users').doc('${userID').valueChanges()
+      .pipe(take(1))//Unsubscribes automatically after the first execution. From https://blog.angularindepth.com/the-best-way-to-unsubscribe-rxjs-observable-in-the-angular-applications-d8f9aa42f6a0
+      .subscribe(userData => console.log(userData));
+    }
 
   /* How to update users in Firebase https://firebase.google.com/docs/auth/web/manage-users#update_a_users_profile */
   // getStoredData() {

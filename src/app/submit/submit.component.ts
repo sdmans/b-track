@@ -65,10 +65,11 @@ export class SubmitComponent implements OnInit {
     });
   }
 
+  /* Adds bill with additional data to user's collection */
   addBill(type, e) {
     e.preventDefault();
     // console.log(type);
-    const billType = type.value;//retrieves the value from the template variable
+    const billType = type.value;//retrieves the value from the input template variable
     console.log("Bill type is: " + billType);
     
     this.billObject.category = billType;

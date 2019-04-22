@@ -6,11 +6,15 @@
 <div *ngIf="_isLoggedIn && displayedUserBills$" class="bill-view">
     <div *ngFor="let bill of displayedUserBills$" class="card">
         <div class="card-body">
-            <h4 class="card-title">Bill Number: <a href="{{bill.leg_url}}" target="_blank">{{bill.bill_number}}</a> | ID {{bill.id}}</h4>
+            <h4 class="card-title">{{bill.state}} 
+                <a href="{{bill.leg_url}}" target="_blank">{{bill.bill_number}}</a> 
+                | ID: {{bill.id}}
+            </h4>
             <hr>
             <p><b>Description</b><br>{{bill.description}}</p>
             <p><b>State:</b> {{bill.state}}</p>
-            <p><b>Category:</b> {{bill.category}}</p>
+            <!-- Adjusting how bills are moved, will add this in after problem is solved -->
+            <!-- <p><b>Category:</b> {{bill.category}}</p> -->
             <p class="card-text"><b>Last Action:</b> {{bill.lastAction.date}} - {{bill.lastAction.action}}</p>
             <hr>
             <p class="card-text"><b><u>Action History</u></b></p>
@@ -18,7 +22,8 @@
                 <p class="card-text"><b>{{item.date}}</b> - {{item.action}}</p>
             </div>
             <!-- <p><b>Bill ID:</b> {{bill.id}}</p> -->
-            <div class="button-container">
+            <div class="btn-container">
+                <button class="btn btn-danger" (click)="removeBill(bill.id)">Remove</button>
             </div>
         </div>
     </div>

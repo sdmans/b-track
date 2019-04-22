@@ -72,9 +72,11 @@ testIdArray = [1057177, 1112900, 968893];
         /* Checks if a user is logged in and retrieves the user's billData */
         this.getUserBills(user.uid).subscribe((userData: User) => {
           // console.log(userData.billCollection);
-          userData.billCollection.map((bill) => {
+
+          userData.billCollection.map((billId) => {
+            console.log(billId);//Just the number is being passed in. See if you can figure out
             
-            this.billService.getBills(bill.billObject.id).subscribe((billData) => {
+            this.billService.getBills(billId).subscribe((billData) => {
               let billRef = billData["bill"];
               
               this.displayedUserBills$.push(
@@ -89,7 +91,7 @@ testIdArray = [1057177, 1112900, 968893];
                   status: { status: billRef.status, date: billRef.status_date },
                   leg_url: billRef.url,
                   state_url: billRef.state_link,
-                  category: bill.billObject.category
+                  // category: bill.billObject.category
                 }
               );
             });
@@ -153,8 +155,9 @@ testIdArray = [1057177, 1112900, 968893];
     return this.db.getUserData(userId);
   }
 
-  removeBill(billId, billCategory) {
+  removeBill(billId) {
     let userId = this.currentUser.id;
-    this.db.removeBillFromCollection(billId, userId, billCategory);
+    console.log(billId, userId)
+    this.db.removeBillFromCollection(billId, userId);
   }
 }
