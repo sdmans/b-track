@@ -46,23 +46,31 @@ export class BillDataService {
       /* Compare lastAction to retrieved bill's current last action stored in an object at position 0 in the history array */
       if (lastAction.action === currentLastAction.action && lastAction.date === currentLastAction.date) {
         /* Does nothing and logs status since the bill is upToDate */
+
         // this.db.updateBill(uniqueId, currentLastAction);
         console.log(`Status is ${billStatus}`);
         console.log('Data Matches, your bill status is up-to-date!');
       } else {
         console.log('lastAction is outdated');
-        this.db.changeBillStatus(uniqueId);//Toggles to bill status to false if the above condition isn't met
-        console.log("Listed last action is: \n", lastAction.action, lastAction.date )
-        console.log("Current last action is: \n", currentLastAction.action, currentLastAction.date )
+        this.db.changeBillStatus(uniqueId);//Toggles to bill status to false if the bill action doesn't match
+
+        /* Create a seperate method that updates the content of the bill */
+
+        // console.log("Listed last action is: \n", lastAction.action, lastAction.date);
+        // console.log("Current last action is: \n", currentLastAction.action, currentLastAction.date);
         /* Function takes uniqueId argument passed in from the database-data-viewer-component updateBill method */
         /* It then sets the bill upToDate property to false */
 
         /* Note for today: Need to update the status in Firebase so the update bill function works */
-        
+
         // this.db.updateBill(uniqueId, currentLastAction);
         // this.db.updateBill(billId, userId);
       }
     });
+  }
+
+  updateBill() {
+    /* This will be a separate function that updates the status of the bill */
   }
 
 }
