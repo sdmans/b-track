@@ -1,12 +1,3 @@
-<!-- <nav>
-    <a routerLink="/" routerLinkActive="active">Home</a>
-    <a routerLink="/bill-data-list" routerLinkActive="active">Bill View</a>
-    <a routerLink="/submit" routerLinkActive="active">Search For Bills</a>
-    <a routerLink="/register" routerLinkActive="active">Register</a>
-    <a href="#" *ngIf="_isLoggedIn" (click)="logOut($event)">Log Out</a>
-    <a *ngIf="!_isLoggedIn" routerLink="/login" routerLinkActive="active">Log In</a>
-</nav> -->
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <button class="navbar-toggler" #navbarToggler type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -15,10 +6,10 @@
         <div class="collapse navbar-collapse" id="navbarColor01">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" routerLink="/bill-data-list" routerLinkActive="active" (click)="collapseNav()">Database View</a>
+                <a class="nav-link" routerLink="/list" routerLinkActive="active" (click)="collapseNav()">List View</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/current" routerLinkActive="active" (click)="collapseNav()">Request View</a>
+              <!-- <a class="nav-link" routerLink="/current" routerLinkActive="active" (click)="collapseNav()">Request View</a> -->
           </li>
             <li class="nav-item">
                 <a class="nav-link" routerLink="/submit" routerLinkActive="active"(click)="collapseNav()">Bill Search</a>

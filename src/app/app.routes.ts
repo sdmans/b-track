@@ -7,8 +7,8 @@ import { LogInComponent } from './log-in/log-in.component';
 import { CurrentDataViewerComponent } from './current-data-viewer/current-data-viewer.component';
 
 export const appRoutes: Routes = [
-    { path: '', redirectTo: '/bill-data-list', pathMatch: 'full' },
-    { path: 'bill-data-list', component: DatabaseDataViewerComponent },
+    { path: '', redirectTo: '/list', pathMatch: 'full' },
+    { path: 'list', component: DatabaseDataViewerComponent },
     { path: 'submit', component: SubmitComponent },
     { path: 'login', component: LogInComponent },
     { path: 'register', component: RegisterComponent },

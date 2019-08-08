@@ -61,6 +61,7 @@ testIdArray = [1057177, 1112900, 968893];
   //     this._isLoggedIn = false;
   //     return;
   //   });
+  // this.retrieveTestData();
 
     firebase.auth().onAuthStateChanged((user) => {
       if (user !== null) {
@@ -76,7 +77,7 @@ testIdArray = [1057177, 1112900, 968893];
 
           /* I might need to adjust it since it might be making multiple subscriptions */
           userData.billCollection.map((billId) => {
-            
+            // console.log(billId);
             this.billService.getBills(billId).subscribe((billData) => {
               let billRef = billData["bill"];
               
@@ -108,7 +109,7 @@ testIdArray = [1057177, 1112900, 968893];
         return;
       }
     });
-    this.retrieveTestDataById();
+    // this.retrieveTestDataById();
   }
 
 
@@ -117,9 +118,9 @@ testIdArray = [1057177, 1112900, 968893];
   /* rxjs Filter documenation  https://www.learnrxjs.io/operators/filtering/filter.html */
     
     testBills.pipe(filter((bill) => bill.userId === this.currentUser.id)).subscribe((userBill) => {
-      // console.log(userBill);
-      // this.displayedBills.push(userBill);
-      // console.log(this.displayedBills);
+      console.log(userBill);
+      this.displayedBills.push(userBill);
+      console.log(this.displayedBills);
     });
   }
 
@@ -127,7 +128,7 @@ testIdArray = [1057177, 1112900, 968893];
     this.testIdArray.map((billId) => {
       
       this.billService.getBills(billId).subscribe((bill: Bill) => {
-        // console.log(bill);
+        console.log(bill);
         let billRef = bill["bill"];
         /* Pushing each of the values from the Bill interface into an array of bills to be displayed */
         this.displayedBills$.push(

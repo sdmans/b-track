@@ -125,7 +125,7 @@ _isLoggedIn: boolean;
   }
 
 
-  /* Find a way to get bills to perform an request for each instead of storing them to a database */
+  /* Find a way to get bills to perform a request for each instead of storing them to a database */
 
   
 

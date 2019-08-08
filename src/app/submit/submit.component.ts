@@ -78,7 +78,7 @@ export class SubmitComponent implements OnInit {
 
     this.db.addBill(this.billObject);//Addbill method takes the billObject produced by the request from the findBill method above, then 
     //this.billObject = undefined;//Reset the billObject after the query is finished.
-    this.router.navigateByUrl('/bill-data-list');
+    this.router.navigateByUrl('/list');
 
   }
 }

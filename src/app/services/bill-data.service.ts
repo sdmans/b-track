@@ -17,7 +17,7 @@ export class BillDataService {
   }
 
   getBills(id) {
-    // console.log(id)
+    console.log(id)
     let requestUrl = `${this.url}${id}`;
     let request = this.http.get(requestUrl);
     /* Implement error handling after you're finished https://stackoverflow.com/questions/44385777/how-does-http-error-handling-work-with-observables */
@@ -52,9 +52,13 @@ export class BillDataService {
       } else {
         console.log('lastAction is outdated');
         this.db.changeBillStatus(uniqueId);//Toggles to bill status to false if the above condition isn't met
-
+        console.log("Listed last action is: \n", lastAction.action, lastAction.date )
+        console.log("Current last action is: \n", currentLastAction.action, currentLastAction.date )
         /* Function takes uniqueId argument passed in from the database-data-viewer-component updateBill method */
         /* It then sets the bill upToDate property to false */
+
+        /* Note for today: Need to update the status in Firebase so the update bill function works */
+        
         // this.db.updateBill(uniqueId, currentLastAction);
         // this.db.updateBill(billId, userId);
       }
