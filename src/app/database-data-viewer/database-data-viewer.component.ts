@@ -55,8 +55,17 @@ _isLoggedIn: boolean;
   }
 
   /* See if you can find a way to toggle classes using https://stackoverflow.com/questions/44535515/angular-ngclass-and-click-event-for-toggling-class */
-  toggleEditMode(uniqueId) {
-    console.log(`Now in edit mode for bill with unique ID: ${uniqueId}` );
+  toggleEditMode(billObject: Bill) {
+    console.log(`Now in edit mode for bill with unique ID: ${billObject.uniqueId}`);
+    billObject.edit = !billObject.edit;
+    // console.log(billObject);
+  }
+
+  saveEditedAction(uniqueID, billObject: Bill) {
+    /* Saves changes for last action to firebase */
+    console.log(`Saving bill with unique ID: ${uniqueID}`);
+
+    this.toggleEditMode(billObject);
   }
 
 
