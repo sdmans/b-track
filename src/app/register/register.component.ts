@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
     const userEmail = email.value;
     const password = pw.value;
     this.auth.createUser(userEmail, password);
-    this.router.navigateByUrl('/bill-data-list');
+    this.router.navigateByUrl('/list');
   }
 
   signIn(user, pw, e) {

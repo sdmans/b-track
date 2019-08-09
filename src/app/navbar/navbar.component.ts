@@ -46,7 +46,7 @@ export class NavbarComponent implements OnInit {
     console.log("Signing out...")
     this.auth.signOut();
     this._isLoggedIn = false;
-    this.router.navigateByUrl('/bill-data-list')
+    this.router.navigateByUrl('/list');
   }
 
   navBarTogglerIsVisible() {

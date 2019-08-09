@@ -39,7 +39,7 @@
                 <div class="button-container">
                     <hr>
                     <button class="btn btn-success" (click)="updateBill(bill.id, bill.lastAction, bill.uniqueId, bill.isUpToDate)">Update Bill</button>
-                    <button class="btn btn-info" (click)="checkBillStatus(bill.uniqueId, bill.isUpToDate)">Check Status</button>
+                    <button class="btn btn-info" (click)="checkBillStatus(bill.id, bill.uniqueId, bill.isUpToDate, bill.lastAction)">Check Status</button>
                     <button class="btn btn-danger" (click)="deleteBill(bill.uniqueId, bill.bill_number)">Delete</button>
                     <hr>
                 </div>

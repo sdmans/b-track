@@ -16,10 +16,10 @@ export class BillDataService {
   constructor(private http: HttpClient, private db: DatabaseService) { 
   }
 
-  getBills(id) {
+  getBill(id) {
     console.log(id)
     let requestUrl = `${this.url}${id}`;
-    let request = this.http.get(requestUrl);
+    let request = this.http.get(requestUrl);//Returns bill data in JSON
     /* Implement error handling after you're finished https://stackoverflow.com/questions/44385777/how-does-http-error-handling-work-with-observables */
   
     // console.trace('Adding retrieved bills');
@@ -28,10 +28,9 @@ export class BillDataService {
     return request;
   }
 
-  compareBill(billId, lastAction, uniqueId, billStatus): void {
+  compareBill(billId, uniqueId, lastAction): void {
     /* Store the values to create the request string and pass it into the http request */
-    let requestUrl = `${this.url}${billId}`;
-    let request = this.http.get(requestUrl);
+    let request = this.getBill(billId);
 
     request.subscribe((requestedBill) => {
       let billLastAction = requestedBill['bill'].history[0];
@@ -45,32 +44,26 @@ export class BillDataService {
 
       /* Compare lastAction to retrieved bill's current last action stored in an object at position 0 in the history array */
       if (lastAction.action === currentLastAction.action && lastAction.date === currentLastAction.date) {
-        /* Does nothing and logs status since the bill is upToDate */
-
-        // this.db.updateBill(uniqueId, currentLastAction);
-        console.log(`Status is ${billStatus}`);
+        /* Changes boolean value to true and logs current status */
+        this.db.changeBillStatus(uniqueId, true);
         console.log('Data Matches, your bill status is up-to-date!');
+        console.log(currentLastAction);
       } else {
-        console.log('lastAction is outdated');
-        this.db.changeBillStatus(uniqueId);//Toggles to bill status to false if the bill action doesn't match
-
-        /* Create a seperate method that updates the content of the bill */
-
-        // console.log("Listed last action is: \n", lastAction.action, lastAction.date);
-        // console.log("Current last action is: \n", currentLastAction.action, currentLastAction.date);
-        /* Function takes uniqueId argument passed in from the database-data-viewer-component updateBill method */
-        /* It then sets the bill upToDate property to false */
-
+        console.log('lastAction is outdated! Here is the current last action');
+        console.log(currentLastAction);
+        this.db.changeBillStatus(uniqueId, false);//Toggles to bill status to false if the bill action doesn't match
+        console.log('To update bill status, please click the update Bill button!');
         /* Note for today: Need to update the status in Firebase so the update bill function works */
-
-        // this.db.updateBill(uniqueId, currentLastAction);
-        // this.db.updateBill(billId, userId);
       }
     });
   }
 
-  updateBill() {
+  updateBill(billId, uniqueid) {
     /* This will be a separate function that updates the status of the bill */
+    /* Function takes uniqueId argument passed in from the database-data-viewer-component updateBill method */
+   /* It then sets the bill upToDate property to false */
+
+
   }
 
 }

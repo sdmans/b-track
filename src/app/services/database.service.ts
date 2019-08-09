@@ -76,7 +76,7 @@ export class DatabaseService {
     console.log(billData);
     this.billCollection.add(billData);//Adds bill to Firestore bill collection
     
-    const billObject = { id: billData.id, category: billData.category }//billObject contains the billId to use in a query and selected category. Push bill object into user's billCollection
+    const billObject = { id: billData.id, category: billData.category }//billObject contains the bill ID to use in a query and the bill's selected category. Push bill object into user's billCollection
     /* Working with arrays on Firebase as of 2018 https://stackoverflow.com/questions/46757614/how-to-update-an-array-of-objects-with-firestore */
     
     let userRef = this.afs.collection('users').doc(`${billData.userId}`);//Reference to the user based on the logged in user's ID.
@@ -84,7 +84,7 @@ export class DatabaseService {
     console.log(billData.userId);
     console.log(userRef);
     userRef.update({
-      billCollection: firebase.firestore.FieldValue.arrayUnion(billData.id)//Attempting just the ID to see if it's easier to remove than an object.
+      billCollection: firebase.firestore.FieldValue.arrayUnion(billData.id)//Attempting to use just the ID to see if it's easier to remove than an object.
     });
     
   }
@@ -100,11 +100,10 @@ export class DatabaseService {
   }
   /* Create a function to toggle bill status. Then the update bill button should be available that will use the function below. This should help make the UI work properly */
 
-  changeBillStatus(uniqueId) {
+  changeBillStatus(uniqueId, boolean) {
     /* If the bill is false, this should set the bill status to false so it can be updated with the second "Update Bill" button */
-    this.afs.collection('bills').doc(`${uniqueId}`).update({ isUpToDate: false });
+    this.afs.collection('bills').doc(`${uniqueId}`).update({ isUpToDate: boolean });
   }
-
 
   updateBill(uniqueId, currentLastAction) {
     console.log('Bill is outdated. Now updating...');

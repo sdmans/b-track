@@ -19,7 +19,7 @@ export class LogInComponent implements OnInit {
     const userEmail = email.value;
     const password = pw.value;
     this.auth.signIn(userEmail, password);
-    this.router.navigateByUrl('/bill-data-list');
+    this.router.navigateByUrl('/list');
   }
 
 }

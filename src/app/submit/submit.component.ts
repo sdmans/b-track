@@ -40,7 +40,7 @@ export class SubmitComponent implements OnInit {
   findBill(id): void {
     let billId = id.value;
     this.billIdNumber = id.value;//retrieves the value form the template variable
-    this.billService.getBills(billId)
+    this.billService.getBill(billId)
     .pipe(take(1))//Unsubscribes automatically after the first execution. From https://blog.angularindepth.com/the-best-way-to-unsubscribe-rxjs-observable-in-the-angular-applications-d8f9aa42f6a0
       .subscribe((bill) => {
       let billRef = bill["bill"];
@@ -56,7 +56,7 @@ export class SubmitComponent implements OnInit {
         title: billRef.title,
         description: billRef.description,
         history: billRef.history,
-        lastAction: billRef.history[(billRef.history.length-1)],
+        lastAction: billRef.history[(billRef.history.length-1)],//Gets the last action based on the length of the array
         state_link: billRef.state_link,
         leg_url: billRef.url
       }
@@ -72,11 +72,12 @@ export class SubmitComponent implements OnInit {
     const billType = type.value;//retrieves the value from the input template variable
     console.log("Bill type is: " + billType);
     
+    /* The properties below are asigned to the billObject created in the findBill method above */
     this.billObject.category = billType;
-    this.billObject.isUpToDate = true;
+    this.billObject.isUpToDate = false;
     this.billObject.userId = this.currentUser.id;//Update with billType and User's id for display purposes.
 
-    this.db.addBill(this.billObject);//Addbill method takes the billObject produced by the request from the findBill method above, then 
+    this.db.addBill(this.billObject);//The add bill method takes the billObject produced by the request from the findBill method above, then adds it to the collection.
     //this.billObject = undefined;//Reset the billObject after the query is finished.
     this.router.navigateByUrl('/list');
 

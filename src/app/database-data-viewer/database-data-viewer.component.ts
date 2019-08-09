@@ -22,15 +22,11 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./database-data-viewer.component.css']
 })
 export class DatabaseDataViewerComponent implements OnInit {
-// currentBills;
 /* Array of Subscriptions solution by https://stackoverflow.com/questions/45087291/unsubscribing-an-array-of-subscriptions */
 private subscriptions = new Subscription();
 databaseBillData: Observable<Bill[]>; 
-// testBills = [];
-// testArray = [];
 currentUser;
 _isLoggedIn: boolean;
-// billStatus: boolean;
 
 
   constructor(private billService: BillDataService, private db: DatabaseService, private auth: AuthService) {
@@ -52,45 +48,36 @@ _isLoggedIn: boolean;
   }
 
   ngOnInit() {
-    
-    // this.databaseBillData = this.db.getBillData().valueChanges();
     this.databaseBillData = this.db.getBillSnapshot();
     /* In order to filter the bills from the observable above, I would need the userId */
-
-    // this.db.getBillData().valueChanges().subscribe(data => console.log(data));
-
-    // this.testRetrieveBills();
-    //Just a test to retrieve data from the database;
-    //this.db.getStoredData().valueChanges().subscribe(data => console.log(data))
-    // this.auth.createUser('bill', 'bill@bill.com', '12345'); 
-    // this.addRetrievedBills();
 
   }
 
   /* See if you can find a way to toggle classes using https://stackoverflow.com/questions/44535515/angular-ngclass-and-click-event-for-toggling-class */
 
-  checkBillStatus(uniqueId, billStatus) {
+  checkBillStatus(billId, uniqueId, billStatus, lastAction) {
     if (billStatus === undefined) {
       /* Function sets the bill to false */
-      this.db.changeBillStatus(uniqueId);
-    } else if (billStatus === false) {
-      console.log("This bill is outdated, click the Update Bill button!");
+      this.db.changeBillStatus(uniqueId, false);
+    } else if (billStatus === false || billStatus === true) {
+      this.billService.compareBill(billId, uniqueId,lastAction);
     } else {
-      console.log("Looks like the bill is up-to-date!", billStatus);
+      console.log("This bill is up-to-date!", billStatus);
     }
   }
 
   updateBill(billId, lastAction, uniqueId, billStatus) {
     console.log(`Checking status for ${billId}`);
-    // console.log(billId, uniqueId);
-    // console.log(lastAction)
-
-    this.billService.getBills(billId).subscribe((bill) => {
+    if (billStatus === false ) {
+    this.billService.getBill(billId).subscribe((bill) => {
       let billRef = bill["bill"]; 
-      // console.log(billRef.bill_number);
       console.table(billRef.history);
-      this.billService.compareBill(billId, lastAction, uniqueId, billStatus);
+      this.billService.compareBill(billId, lastAction, uniqueId);
     });
+  } else {
+    console.log("Bills seems updated, check the bill's status first!");
+  }
+
   }
 
   deleteBill(uniqueId, number): void {
