@@ -14,5 +14,6 @@ export interface Bill {
     uniqueId?: string,
     userId?: string,
     notes?: [{}],
+    edit?: boolean,
     isUpToDate?: boolean
   }

@@ -22,8 +22,16 @@
                 <p><b>State:</b> {{bill.state}}</p>
                 <p class="card-text"><b>Category:</b> {{bill.category | titlecase}}</p>
                 <!-- <p><b>Bill ID:</b> </p> -->
+                <div class="action-container">
                 <p class="card-text"><b>Last Action:</b> {{bill.lastAction.date}} 
-                    - {{bill.lastAction.action}}</p>
+                    - {{bill.lastAction.action}}</p> <button class="btn edit-btn" (click)="toggleEditMode(bill.uniqueId)">Edit Action</button>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Last Action</span>
+                        </div>
+                        <input type="text" class="form-control" id="basic-url">
+                    </div>
+                </div>
                 <p class="card-text"><b><u>Action History</u></b></p>
                     <div *ngFor="let item of bill.history">
                         <p class="card-text"><b>{{item.date}}</b> - {{item.action}}</p>

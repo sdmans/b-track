@@ -64,8 +64,9 @@ export class DatabaseService {
       map(actions => actions.map(a => {
         const snapshotData = a.payload.doc.data() as Bill;
         const uniqueId = a.payload.doc.id;
+        const edit = false; //Added to return a default boolean that determines whether a bill section is in edit mode.
         // console.log({ id, ...data })
-        return { uniqueId, ...snapshotData };
+        return { uniqueId, edit, ...snapshotData };
       }))
     );
     return this.billData;

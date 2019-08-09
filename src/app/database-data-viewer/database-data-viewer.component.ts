@@ -49,11 +49,16 @@ _isLoggedIn: boolean;
 
   ngOnInit() {
     this.databaseBillData = this.db.getBillSnapshot();
+
     /* In order to filter the bills from the observable above, I would need the userId */
 
   }
 
   /* See if you can find a way to toggle classes using https://stackoverflow.com/questions/44535515/angular-ngclass-and-click-event-for-toggling-class */
+  toggleEditMode(uniqueId) {
+    console.log(`Now in edit mode for bill with unique ID: ${uniqueId}` );
+  }
+
 
   checkBillStatus(billId, uniqueId, billStatus, lastAction) {
     if (billStatus === undefined) {
