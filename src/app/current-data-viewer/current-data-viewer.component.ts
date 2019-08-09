@@ -78,7 +78,7 @@ testIdArray = [1057177, 1112900, 968893];
           /* I might need to adjust it since it might be making multiple subscriptions */
           userData.billCollection.map((billId) => {
             // console.log(billId);
-            this.billService.getBills(billId).subscribe((billData) => {
+            this.billService.getBill(billId).subscribe((billData) => {
               let billRef = billData["bill"];
               
               this.displayedUserBills$.push(
@@ -127,7 +127,7 @@ testIdArray = [1057177, 1112900, 968893];
   retrieveTestDataById() {
     this.testIdArray.map((billId) => {
       
-      this.billService.getBills(billId).subscribe((bill: Bill) => {
+      this.billService.getBill(billId).subscribe((bill: Bill) => {
         console.log(bill);
         let billRef = bill["bill"];
         /* Pushing each of the values from the Bill interface into an array of bills to be displayed */
