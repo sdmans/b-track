@@ -58,14 +58,23 @@ _isLoggedIn: boolean;
   toggleEditMode(billObject: Bill) {
     console.log(`Now in edit mode for bill with unique ID: ${billObject.uniqueId}`);
     billObject.edit = !billObject.edit;
-    // console.log(billObject);
   }
 
-  saveEditedAction(uniqueID, billObject: Bill) {
-    /* Saves changes for last action to firebase */
-    console.log(`Saving bill with unique ID: ${uniqueID}`);
+  saveEditedAction(uniqueId, billObject: Bill, input) {
+    /* Method saves changes for last action to firebase */
+    console.log(`Saving bill with unique ID: ${uniqueId}`);
 
-    this.toggleEditMode(billObject);
+    const inputText = input.value;
+    console.log(inputText);
+    const editedAction = {
+      action: inputText,
+      date: billObject.lastAction.date
+    };//Right now the date is the same until I implement the way to edit that as well. For reference, the date property is of type string.
+
+    
+    this.db.editBillAction(uniqueId, editedAction);//Access database service method to update the action in Firebase!
+
+    this.toggleEditMode(billObject);//Toggle back to normal view once edit is finished.
   }
 
 

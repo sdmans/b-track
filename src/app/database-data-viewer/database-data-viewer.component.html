@@ -29,9 +29,9 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text">Edit Action</span>
                         </div>
-                        <input type="text" class="form-control" id="basic-url">
+                        <input #input type="text" class="form-control" id="basic-url" value="{{bill.lastAction.action}}">
                         <button class="btn edit-btn" (click)="toggleEditMode(bill)">Cancel Edit</button>
-                        <button class="btn edit-btn" (click)="saveEditedAction(bill.uniqueId, bill)">Save</button>
+                        <button class="btn edit-btn" (click)="saveEditedAction(bill.uniqueId, bill, input)">Save</button>
                     </div>
                 </div>
                 <p class="card-text"><b><u>Action History</u></b></p>

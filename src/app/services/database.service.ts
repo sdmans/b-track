@@ -106,6 +106,10 @@ export class DatabaseService {
     this.afs.collection('bills').doc(`${uniqueId}`).update({ isUpToDate: boolean });
   }
 
+  editBillAction(uniqueId, updatedAction) {
+    this.afs.collection('bills').doc(`${uniqueId}`).update({lastAction: updatedAction});
+  }
+
   updateBillAction(uniqueId, currentLastAction) {
     console.log('Bill is outdated. Now updating...');
     /* Update bill to currentLastAction which is the current status form the request. Then sets the isUpToDate value to true */
