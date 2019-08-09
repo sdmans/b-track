@@ -106,8 +106,9 @@ export class DatabaseService {
     this.afs.collection('bills').doc(`${uniqueId}`).update({ isUpToDate: boolean });
   }
 
-  editBillAction(uniqueId, updatedAction) {
-    this.afs.collection('bills').doc(`${uniqueId}`).update({lastAction: updatedAction});
+  editBillAction(uniqueId, editedAction) {
+    this.afs.collection('bills').doc(`${uniqueId}`).update({lastAction: editedAction});
+    console.log('Bill action updated successfully!');
   }
 
   updateBillAction(uniqueId, currentLastAction) {

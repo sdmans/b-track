@@ -25,14 +25,24 @@
                 <div class="action-container">
                 <p *ngIf="!bill.edit" class="card-text"><b>Last Action:</b> {{bill.lastAction.date}} 
                     - {{bill.lastAction.action}}</p> <button *ngIf="!bill.edit" class="btn edit-btn" (click)="toggleEditMode(bill)">Edit Action</button>
-                    <div *ngIf="bill.edit" class="input-group">
+                <div *ngIf="bill.edit" class="input-container">
+                    <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text">Edit Action</span>
                         </div>
-                        <input #input type="text" class="form-control" id="basic-url" value="{{bill.lastAction.action}}">
-                        <button class="btn edit-btn" (click)="toggleEditMode(bill)">Cancel Edit</button>
-                        <button class="btn edit-btn" (click)="saveEditedAction(bill.uniqueId, bill, input)">Save</button>
+                        <input #text type="text" class="form-control" id="basic-url" value="{{bill.lastAction.action}}">
                     </div>
+                    <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">Edit Date</span>
+                            </div>
+                            <input #date type="text" class="form-control" id="basic-url" value="{{bill.lastAction.date}}">
+                            <button class="btn edit-btn" (click)="toggleEditMode(bill)">Cancel Edit</button>
+                            <button class="btn edit-btn" (click)="saveEditedAction(bill.uniqueId, bill, text, date)">Save</button>
+                        </div>
+                    
+                </div>
+
                 </div>
                 <p class="card-text"><b><u>Action History</u></b></p>
                     <div *ngFor="let item of bill.history">
