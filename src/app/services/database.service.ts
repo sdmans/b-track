@@ -105,18 +105,20 @@ export class DatabaseService {
     this.afs.collection('bills').doc(`${uniqueId}`).update({ isUpToDate: boolean });
   }
 
-  updateBill(uniqueId, currentLastAction) {
+  updateBillAction(uniqueId, currentLastAction) {
     console.log('Bill is outdated. Now updating...');
     /* Update bill to currentLastAction which is the current status form the request. Then sets the isUpToDate value to true */
     this.afs.collection('bills').doc(`${uniqueId}`).update({lastAction: currentLastAction});
     this.afs.collection('bills').doc(`${uniqueId}`).update({ isUpToDate: true });
-    this.afs.collection('bills').doc(`${uniqueId}`).valueChanges().subscribe((bill: Bill) => {
-      if (bill.isUpToDate === true) {
-        console.log("Bill is now up-to-date!", bill);
-      } else {
-        console.log("Bill was not updated, there was an issue", bill);
-      }
-    });
+    console.log("Bill was updated successfully!");
+
+    // this.afs.collection('bills').doc(`${uniqueId}`).valueChanges().subscribe((bill: Bill) => {
+    //   if (bill.isUpToDate === true) {
+    //     console.log("Bill is now up-to-date!", bill);
+    //   } else {
+    //     console.log("Bill was not updated, there was an issue", bill);
+    //   }
+    // });
   }
 
   /* Logic for creating and updating users goes below here */

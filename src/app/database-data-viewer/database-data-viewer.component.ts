@@ -78,7 +78,7 @@ _isLoggedIn: boolean;
 
   } else {
     console.log("Bills seems updated, check the bill's status first!");
-  }
+    }
 
   }
 

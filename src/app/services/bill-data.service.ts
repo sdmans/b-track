@@ -59,7 +59,7 @@ export class BillDataService {
     });
   }
 
-  updateBill(billId, uniqueid) {
+  updateBill(billId, uniqueId) {
     /* This will be a separate function that updates the last Action of the bill and toggles the bill's status to true */
     /* Function takes a bill's Id for the HTTP reqeust and the bill's unique ID on Firebase as arguments passed in from the database-data-viewer-component updateBill method */
     this.getBill(billId).subscribe((requestedBill) => {
@@ -70,9 +70,7 @@ export class BillDataService {
         date: billLastAction.date,
         action: billLastAction.action
       }
-
-      console.log(currentLastAction);
-
+      this.db.updateBillAction(uniqueId, currentLastAction);
     })
 
   }
