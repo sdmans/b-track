@@ -16,9 +16,9 @@ export class BillDataService {
   constructor(private http: HttpClient, private db: DatabaseService) { 
   }
 
-  getBill(id) {
-    console.log(id)
-    let requestUrl = `${this.url}${id}`;
+  getBill(billId) {
+    console.log(billId)
+    let requestUrl = `${this.url}${billId}`;
     let request = this.http.get(requestUrl);//Returns bill data in JSON
     /* Implement error handling after you're finished https://stackoverflow.com/questions/44385777/how-does-http-error-handling-work-with-observables */
   
@@ -33,7 +33,8 @@ export class BillDataService {
     let request = this.getBill(billId);
 
     request.subscribe((requestedBill) => {
-      let billLastAction = requestedBill['bill'].history[0];
+      let billRef = requestedBill['bill'];//Stored to variable for easier reference
+      let billLastAction = billRef.history[(billRef.history.length - 1)];// Retrieves bill last action as last item in history array based on length
       // console.log("Requested Bills: ", requestedBill);
 
       /* Storing requested bill's last action in an object for easier reference */
@@ -59,10 +60,20 @@ export class BillDataService {
   }
 
   updateBill(billId, uniqueid) {
-    /* This will be a separate function that updates the status of the bill */
-    /* Function takes uniqueId argument passed in from the database-data-viewer-component updateBill method */
-   /* It then sets the bill upToDate property to false */
+    /* This will be a separate function that updates the last Action of the bill and toggles the bill's status to true */
+    /* Function takes a bill's Id for the HTTP reqeust and the bill's unique ID on Firebase as arguments passed in from the database-data-viewer-component updateBill method */
+    this.getBill(billId).subscribe((requestedBill) => {
+      let billRef = requestedBill['bill'];
+      let billLastAction = billRef.history[(billRef.history.length - 1)];
 
+      let currentLastAction = {
+        date: billLastAction.date,
+        action: billLastAction.action
+      }
+
+      console.log(currentLastAction);
+
+    })
 
   }
 

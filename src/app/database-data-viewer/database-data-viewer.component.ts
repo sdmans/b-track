@@ -69,11 +69,13 @@ _isLoggedIn: boolean;
   updateBill(billId, lastAction, uniqueId, billStatus) {
     console.log(`Checking status for ${billId}`);
     if (billStatus === false ) {
-    this.billService.getBill(billId).subscribe((bill) => {
-      let billRef = bill["bill"]; 
-      console.table(billRef.history);
-      this.billService.compareBill(billId, lastAction, uniqueId);
-    });
+    // this.billService.getBill(billId).subscribe((bill) => {
+    //   let billRef = bill["bill"]; 
+    //   console.table(billRef.history);
+    //   this.billService.compareBill(billId, lastAction, uniqueId);
+    // });
+      this.billService.updateBill(billId, uniqueId);
+
   } else {
     console.log("Bills seems updated, check the bill's status first!");
   }
