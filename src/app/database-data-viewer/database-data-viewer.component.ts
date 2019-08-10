@@ -66,22 +66,23 @@ _isLoggedIn: boolean;
 
   saveEditedBillData(uniqueId, billObject: Bill, categoryInput, actionInput, dateInput) {
     /* Method saves changes for last action to firebase */
-    console.log(`Saving bill with unique ID: ${uniqueId}`);
-    console.log(billObject);
+    console.log(`Editing bill with unique ID: ${uniqueId}`);
 
     const categoryText = categoryInput.value; 
     const actionText = actionInput.value;
     const dateText = dateInput.value;
- 
 
     const editedAction = {
       action: actionText,
       date: dateText
     };
-    
-    this.db.editBill(uniqueId, editedAction, categoryText);//Access database service method to update the action in Firebase!
 
-    this.toggleEditMode(billObject);//Toggle back to normal view once edit is finished.
+    if (categoryText === billObject.category && actionText === billObject.lastAction.action && categoryText === billObject.category) {
+      console.log('No updates detected. Returning to edit view!');
+    } else {
+      this.db.editBill(uniqueId, editedAction, categoryText);//Access database service method to update the action in Firebase!
+    }
+    return this.toggleEditMode(billObject);//Toggle back to normal view once edit is finished.
   }
 
   checkBillStatus(billId, uniqueId, billStatus, lastAction) {
