@@ -20,26 +20,35 @@
                 <hr>
                 <p><b>Description</b><br>{{bill.description}}</p>
                 <p><b>State:</b> {{bill.state}}</p>
-                <p class="card-text"><b>Category:</b> {{bill.category | titlecase}}</p>
+                <div class="category-container">
+                    <p *ngIf="!bill.edit" class="card-text"><b>Category:</b> {{bill.category | titlecase}}</p>
+                </div>
                 <!-- <p><b>Bill ID:</b> </p> -->
-                <div class="action-container">
+                <div class="edit-container">
                 <p *ngIf="!bill.edit" class="card-text"><b>Last Action:</b> {{bill.lastAction.date}} 
-                    - {{bill.lastAction.action}}</p> <button *ngIf="!bill.edit" class="btn edit-btn" (click)="toggleEditMode(bill)">Edit Action</button>
+                    - {{bill.lastAction.action}}</p> 
+                    <button *ngIf="!bill.edit" class="btn edit-btn" (click)="toggleEditMode(bill)">Edit Bill</button>
                 <div *ngIf="bill.edit" class="input-container">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Edit Category</span>
+                        </div>
+                            <input #category type="text" class="form-control" id="basic-url" value="{{bill.category}}">
+                    </div>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text">Edit Action</span>
                         </div>
-                        <input #text type="text" class="form-control" id="basic-url" value="{{bill.lastAction.action}}">
+                        <input #action type="text" class="form-control" id="basic-url" value="{{bill.lastAction.action}}">
                     </div>
                     <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">Edit Date</span>
-                            </div>
-                            <input #date type="text" class="form-control" id="basic-url" value="{{bill.lastAction.date}}">
-                            <button class="btn edit-btn" (click)="toggleEditMode(bill)">Cancel Edit</button>
-                            <button class="btn edit-btn" (click)="saveEditedAction(bill.uniqueId, bill, text, date)">Save</button>
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Edit Date</span>
                         </div>
+                        <input #date type="text" class="form-control" id="basic-url" value="{{bill.lastAction.date}}">
+                        <button class="btn edit-btn" (click)="toggleEditMode(bill)">Cancel Edit</button>
+                        <button class="btn edit-btn" (click)="saveEditedBillData(bill.uniqueId, bill, category, action, date)">Save</button>
+                    </div>
                     
                 </div>
 

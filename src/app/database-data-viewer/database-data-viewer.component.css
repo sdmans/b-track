@@ -30,7 +30,7 @@ div.database-data-view:not(:first-child) {
     padding-top: 98px;
 }
 
-div.action-container > p, button {
+div.edit-container > p, button {
     display: inline-block;
     margin-bottom: 0px;
 }

@@ -106,9 +106,11 @@ export class DatabaseService {
     this.afs.collection('bills').doc(`${uniqueId}`).update({ isUpToDate: boolean });
   }
 
-  editBillAction(uniqueId, editedAction) {
-    this.afs.collection('bills').doc(`${uniqueId}`).update({lastAction: editedAction});
-    console.log('Bill action updated successfully!');
+  editBill(uniqueId, editedAction, editedCategory) {
+    console.log(editedCategory);
+    this.afs.collection('bills').doc(`${uniqueId}`).update({lastAction: editedAction});//Edits bill's lastAction stored on Firebase with new value
+    this.afs.collection('bills').doc(`${uniqueId}`).update({category: editedCategory});//Edits bill's category stored on Firebase with new value
+    console.log('Bill updated successfully!');
   }
 
   updateBillAction(uniqueId, currentLastAction) {

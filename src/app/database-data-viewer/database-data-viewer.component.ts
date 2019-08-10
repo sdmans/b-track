@@ -56,14 +56,20 @@ _isLoggedIn: boolean;
 
   /* See if you can find a way to toggle classes using https://stackoverflow.com/questions/44535515/angular-ngclass-and-click-event-for-toggling-class */
   toggleEditMode(billObject: Bill) {
-    console.log(`Now in edit mode for bill with unique ID: ${billObject.uniqueId}`);
     billObject.edit = !billObject.edit;
+    if (billObject.edit === true) {
+      console.log('Changing to edit mode');
+    } else {
+      console.log('Changing to view mode');
+    }
   }
 
-  saveEditedAction(uniqueId, billObject: Bill, actionInput, dateInput) {
+  saveEditedBillData(uniqueId, billObject: Bill, categoryInput, actionInput, dateInput) {
     /* Method saves changes for last action to firebase */
     console.log(`Saving bill with unique ID: ${uniqueId}`);
+    console.log(billObject);
 
+    const categoryText = categoryInput.value; 
     const actionText = actionInput.value;
     const dateText = dateInput.value;
  
@@ -73,7 +79,7 @@ _isLoggedIn: boolean;
       date: dateText
     };
     
-    this.db.editBillAction(uniqueId, editedAction);//Access database service method to update the action in Firebase!
+    this.db.editBill(uniqueId, editedAction, categoryText);//Access database service method to update the action in Firebase!
 
     this.toggleEditMode(billObject);//Toggle back to normal view once edit is finished.
   }
