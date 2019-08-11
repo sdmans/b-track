@@ -86,13 +86,16 @@ _isLoggedIn: boolean;
   }
 
   checkBillStatus(billObject: Bill, billId, uniqueId, billStatus, lastAction) {
+    /* Method checks the bill's update status to see if it's defined or set to true or false before comparing it to data retrieved from the API*/
     if (billStatus === undefined) {
-      /* Function sets the bill to false */
-      this.db.changeBillStatus(uniqueId, false);
-    } else if (billStatus === false || billStatus === true) {
+     
+      this.db.changeBillStatus(uniqueId, false);//If the bill is undefined, it will be set to false by default
+    }
+    
+    if (billStatus === false || billStatus === true) {
       this.billService.compareBill(billObject, billId, uniqueId, lastAction);
     } else {
-      console.log("This bill is up-to-date!", billStatus);
+      console.log('Status not detected. There may be an error! Logging the bill for reference');
       console.log(billObject);
     }
   }
