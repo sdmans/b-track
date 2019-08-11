@@ -58,7 +58,10 @@
                         <p class="card-text"><b>{{item.date}}</b> - {{item.action}}</p>
                     </div>
                 <!-- <p><b>Up-To-Date:</b> {{bill.isUpToDate}}</p> -->
-                <p *ngIf="!bill.isUpToDate" class="card-text outdated">Update Available!</p>
+                <hr *ngIf="bill.updateStatus">
+                <!-- <p *ngIf="!bill.isUpToDate" class="card-text outdated">Bill is outdated, click "Update Bill" to update!</p> -->
+                <p *ngIf="bill.updateStatus && !bill.isUpToDate" class="card-text outdated">Update Status: {{bill.updateStatus}}</p>
+                <p *ngIf="bill.updateStatus && bill.isUpToDate" class="uptodate">Update Status: {{bill.updateStatus}}</p>
                 <!-- <p *ngIf="billStatus" class="card-text">Up To Date!</p> -->
                 <!-- <p *ngIf="!billStatus" class="card-text">Update Available!</p> -->
                 <!-- <p class="card-text"><b>userId:</b> {{bill.userId}}</p>
@@ -67,8 +70,8 @@
                 <!-- Update button should be available only if billStatus is set to false -->
                 <div class="button-container">
                     <hr>
-                    <button class="btn btn-success" (click)="updateBill(bill.id, bill.lastAction, bill.uniqueId, bill.isUpToDate)">Update Bill</button>
-                    <button class="btn btn-info" (click)="checkBillStatus(bill.id, bill.uniqueId, bill.isUpToDate, bill.lastAction)">Check Status</button>
+                    <button class="btn btn-success" (click)="updateBill(bill, bill.id, bill.lastAction, bill.uniqueId, bill.isUpToDate)">Update Bill</button>
+                    <button class="btn btn-info" (click)="checkBillStatus(bill, bill.id, bill.uniqueId, bill.isUpToDate, bill.lastAction)">Check Status</button>
                     <button class="btn btn-danger" (click)="deleteBill(bill.uniqueId, bill.bill_number)">Delete</button>
                     <hr>
                 </div>

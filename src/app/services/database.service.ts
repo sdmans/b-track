@@ -104,11 +104,13 @@ export class DatabaseService {
   changeBillStatus(uniqueId, boolean) {
     /* If the bill is false, this should set the bill status to false so it can be updated with the second "Update Bill" button */
     this.afs.collection('bills').doc(`${uniqueId}`).update({ isUpToDate: boolean });
+    
   }
 
   editBill(uniqueId, editedAction, editedCategory) {
     this.afs.collection('bills').doc(`${uniqueId}`).update({lastAction: editedAction});//Edits bill's lastAction stored on Firebase with new value
     this.afs.collection('bills').doc(`${uniqueId}`).update({category: editedCategory});//Edits bill's category stored on Firebase with new value
+    this.changeBillStatus(uniqueId, false);//Toggles to false since the bill's status is now different from the retrieved last action. This method should not run if the status is the same
     console.log('Bill updated successfully!');
   }
 
@@ -118,14 +120,6 @@ export class DatabaseService {
     this.afs.collection('bills').doc(`${uniqueId}`).update({lastAction: currentLastAction});
     this.afs.collection('bills').doc(`${uniqueId}`).update({ isUpToDate: true });
     console.log("Bill was updated successfully!");
-
-    // this.afs.collection('bills').doc(`${uniqueId}`).valueChanges().subscribe((bill: Bill) => {
-    //   if (bill.isUpToDate === true) {
-    //     console.log("Bill is now up-to-date!", bill);
-    //   } else {
-    //     console.log("Bill was not updated, there was an issue", bill);
-    //   }
-    // });
   }
 
   /* Logic for creating and updating users goes below here */
@@ -142,20 +136,14 @@ export class DatabaseService {
   removeBillFromCollection(billId, userId) {
     let userRef = this.afs.collection('users').doc(`${userId}`);//Reference to the user based on the logged in user's ID.
 
-    /* it may be easier to create bill objects and add user references to them. Then add the IDs by themselves to this collection so we can remove that since specifying objects seems to be more complicated */
-
+    /* It may be easier to create bill objects and add user Ids as properties in them. */
     /* The update below removes the selected billId from the user's collection */
     userRef.update({
       billCollection: firebase.firestore.FieldValue.arrayRemove(billId)
     });
   }
 
-  /* How to update users in Firebase https://firebase.google.com/docs/auth/web/manage-users#update_a_users_profile */
-  // getStoredData() {
-  //   /* 1/6/19 - Got Firebase Working! */
-  //   const dataRef = this.db.list('shopping-list');
-  //   return dataRef;
-  // }
+  /* Reference for updating users in Firebase https://firebase.google.com/docs/auth/web/manage-users#update_a_users_profile */
 
 }
 

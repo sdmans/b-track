@@ -85,18 +85,19 @@ _isLoggedIn: boolean;
     return this.toggleEditMode(billObject);//Toggle back to normal view once edit is finished.
   }
 
-  checkBillStatus(billId, uniqueId, billStatus, lastAction) {
+  checkBillStatus(billObject: Bill, billId, uniqueId, billStatus, lastAction) {
     if (billStatus === undefined) {
       /* Function sets the bill to false */
       this.db.changeBillStatus(uniqueId, false);
     } else if (billStatus === false || billStatus === true) {
-      this.billService.compareBill(billId, uniqueId,lastAction);
+      this.billService.compareBill(billObject, billId, uniqueId, lastAction);
     } else {
       console.log("This bill is up-to-date!", billStatus);
+      console.log(billObject);
     }
   }
 
-  updateBill(billId, lastAction, uniqueId, billStatus) {
+  updateBill(billObject: Bill, billId, lastAction, uniqueId, billStatus) {
     console.log(`Checking status for ${billId}`);
     if (billStatus === false ) {
     // this.billService.getBill(billId).subscribe((bill) => {
@@ -104,10 +105,11 @@ _isLoggedIn: boolean;
     //   console.table(billRef.history);
     //   this.billService.compareBill(billId, lastAction, uniqueId);
     // });
-      this.billService.updateBill(billId, uniqueId);
-
+      this.billService.updateBill(billObject, billId, uniqueId);
+      billObject.updateStatus = "Bill Updated Successfully";
   } else {
     console.log("Bills seems updated, check the bill's status first!");
+    billObject.updateStatus = "Bill is currently up-to-date! No further action needed!";
     }
 
   }
