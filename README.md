@@ -1,4 +1,27 @@
-# BillTracker
+# Legislation Tracker
+Search for legislation using the [Legiscan API](https://legiscan.com/legiscan) and add them to a collection to keep track of them!
+
+## Goals:
+1. Users should be able to search for specific state legislation
+2. Users should be able to collect legislation in a list
+3. Users should be able to check for updates on collected Legislation
+
+## Technology
+This project was made using the following technologies:
+* Angular 6 - Front-end framework
+* Bootstrap - For styles and responsiveness
+* Firebase - Cloud FireStore: database and useraAuthentication
+* [Legiscan API](https://legiscan.com/legiscan) - For retrieving legislation information
+
+## Project Summary
+
+## Post-project Summary
+
+### Lessons Learned
+
+
+
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.1.
 
