@@ -14,14 +14,19 @@ This project was made using the following technologies:
 * [Legiscan API](https://legiscan.com/legiscan) - For retrieving legislation information
 
 ## Project Summary
+This was a project to test an the API for a website I use for my work. Rather than subscribing to the service, I wanted to see if I could make a single page application that would let a user view all the legislation they're following in one place, rather than navigating to each page page individually for updated information.
 
 ## Post-project Summary
+The project does what I'd hoped and lets you collect legislation and any information you may need from it. This was just to get an idea of what information can be retrieved from the API. Unfortunately, the process for finding codes for legislation across states takes some time. But with some initial setup, this could be save a lot of time in gathering that kind of information.
 
 ### Lessons Learned
+* Handling HTTP requests and using that to capture the information you need can be really handy! Make sure to test the API to see if it has the kind of information you need before you start planning around it!
 
+* Getting familiar with an APIs documentation can be pretty tough! You should take some time to read through the documentation and get a general idea of what you can do! Sometimes you have to be a bit creative if the methods you find aren't exactly what you need. Learning how to combine the queries can be challenging but it's defintely worth it if you think you're close!
 
+* Working with API keys! I've used a few other APIs that require keys and it can take some time to get them. That's the perfect time to make more plans for what you're building and checking if other APIs are available.
 
-
+* The importance of initial setup. I think it should be easy for users to get started with an application. For this project, retrieving codes for each unique bill would require knowledge of the API and some digging to find what you need. For my next application, I want to make something that's easier for users to work with and wouldn't require too much knowledge for them to get started.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.1.
 
