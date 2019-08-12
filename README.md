@@ -61,17 +61,23 @@ This project is currently hosted on Firebase! You can access the project with th
 
 You can use the Bill Search view, the navigation item in the menu bar at the top, to start searching for legislation, but you'll have to sign in or create an account to use the collecting and tracking features.
 
+### Sample Data and Test Account
+I'm creating a test account for the project. Credentials will be available here soon.
+
 Here's a list of identification numbers you can use to retrieve information on prior legislation with the search view:\
 __ID:__ 789\
 __ID:__ 794\
 __ID:__ 264
 
-In the Legislation Search view, under Bill Search, enter in one of the IDs above and it's information will be displayed below. You can add an optional category if it covers a specific topic you're interested in. Once you're finished, click the "Add to Collection" button.
+### Search View
+In the Legislation Search view, under Bill Search, enter in one of the IDs above and its information will be displayed below under search results. 
 
-As of right now, the test account already has two bills added to the user's collection so you'll see these bills in addition to any that you add to your collection through the search.
+You can add an optional category if it covers a specific topic you're interested in. Once you're finished, click the "Add to Collection" button. You'll then be navigated to the list view.
 
+### List View
 In the list view, you'll see each of the bills you've added to your collection with information such as the description, state, category, and action history showing where it is in the legislative process for that state!
 
+### Features
 Clicking the light blue "Edit Bill" button to the right of the Last Action will allow you to edit the Category, Action, and Action Date. 
 
 Below the Action History list, you'll see three buttons. Here's a description of what they do:
