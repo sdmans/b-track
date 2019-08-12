@@ -59,7 +59,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 ## Instructions: 
-You can use the Bill Search view, the navigation item in the menu bar at the top, to start searching for legislation, but you'll have to sign in or create an account to use the collecting and tracking features.
+You can use the Bill Search view, the navigation item in the menu bar at the top, to start searching for legislation. You'll have to sign in or create an account to use the collecting and tracking features.
 
 ### Sample Data and Test Account
 I'm creating a test account for the project. Credentials will be available here soon!
