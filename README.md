@@ -1,7 +1,17 @@
 # Legislation Tracker
 Search for legislation using the [Legiscan API](https://legiscan.com/legiscan) and add them to a collection to keep track of them!
 
-## Goals:
+## Instructions: 
+This project is currently hosted on Firebase! You can access the project with the link in the description or visit it [here](https://project-host-test-1c4bb.firebaseapp.com/submit).
+
+You can use the submit view to start searching for legislation, but you'll have to sign in to use the collecting and tracking features.
+
+Here's a list of identification numbers you can use to retrieve information on prior legislation with the search view:
+ID: 789
+ID: 794
+ID: 264
+
+## Main Features:
 1. Users should be able to search for specific state legislation
 2. Users should be able to collect legislation in a list
 3. Users should be able to check for updates on collected Legislation
