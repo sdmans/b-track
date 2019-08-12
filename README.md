@@ -4,12 +4,14 @@ Search for legislation using the [Legiscan API](https://legiscan.com/legiscan) a
 ## Instructions: 
 This project is currently hosted on Firebase! You can access the project with the link in the description or visit it [here](https://project-host-test-1c4bb.firebaseapp.com/submit).
 
-You can use the submit view to start searching for legislation, but you'll have to sign in to use the collecting and tracking features.
+You can use the Bill Search view, the section navigation item in the menu bar at the top, to start searching for legislation, but you'll have to sign in to use the collecting and tracking features.
 
-Here's a list of identification numbers you can use to retrieve information on prior legislation with the search view:
-ID: 789
-ID: 794
-ID: 264
+Here's a list of identification numbers you can use to retrieve information on prior legislation with the search view:\
+__ID:__ 789\
+__ID:__ 794\
+__ID:__ 264
+
+As of right now, this account already has two bills added to the user's collection.
 
 ## Main Features:
 1. Users should be able to search for specific state legislation
