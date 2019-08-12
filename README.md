@@ -1,17 +1,7 @@
 # Legislation Tracker
 Search for legislation using the [Legiscan API](https://legiscan.com/legiscan) and add them to a collection to keep track of them!
 
-## Instructions: 
-This project is currently hosted on Firebase! You can access the project with the link in the description or visit it [here](https://project-host-test-1c4bb.firebaseapp.com/submit).
-
-You can use the Bill Search view, the section navigation item in the menu bar at the top, to start searching for legislation, but you'll have to sign in to use the collecting and tracking features.
-
-Here's a list of identification numbers you can use to retrieve information on prior legislation with the search view:\
-__ID:__ 789\
-__ID:__ 794\
-__ID:__ 264
-
-As of right now, this account already has two bills added to the user's collection.
+__Note:__ Instructions for using the application can be found at the bottom of of this document.
 
 ## Main Features:
 1. Users should be able to search for specific state legislation
@@ -65,3 +55,26 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Instructions: 
+This project is currently hosted on Firebase! You can access the project with the link in the description or visit it [here](https://project-host-test-1c4bb.firebaseapp.com/submit).
+
+You can use the Bill Search view, the navigation item in the menu bar at the top, to start searching for legislation, but you'll have to sign in or create an account to use the collecting and tracking features.
+
+Here's a list of identification numbers you can use to retrieve information on prior legislation with the search view:\
+__ID:__ 789\
+__ID:__ 794\
+__ID:__ 264
+
+In the Legislation Search view, under Bill Search, enter in one of the IDs above and it's information will be displayed below. You can add an optional category if it covers a specific topic you're interested in. Once you're finished, click the "Add to Collection" button.
+
+As of right now, the test account already has two bills added to the user's collection so you'll see these bills in addition to any that you add to your collection through the search.
+
+In the list view, you'll see each of the bills you've added to your collection with information such as the description, state, category, and action history showing where it is in the legislative process for that state!
+
+Clicking the light blue "Edit Bill" button to the right of the Last Action will allow you to edit the Category, Action, and Action Date. 
+
+Below the Action History list, you'll see three buttons. Here's a description of what they do:
+* Update Bill: Once you've checked the status, if an update is available, you can apply that update to the listed bill and the some of the data will change.
+* Check Status: Check if updates are available for the selected bill. You can change the status using the "Edit Bill" button next to last action to test this with a small change.
+* Delete: Delete the bill from the collection.
