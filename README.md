@@ -1,6 +1,8 @@
 # Legislation Tracker
 Search for legislation using the [Legiscan API](https://legiscan.com/legiscan) and add them to a collection to keep track of them!
 
+This project is currently hosted on Firebase! You can access the project with the link in the description or visit it [here](https://project-host-test-1c4bb.firebaseapp.com/submit).
+
 __Note:__ Instructions for using the application can be found at the bottom of of this document. You can also access them with this [link](#instructions)!
 
 ## Main Features:
@@ -57,8 +59,6 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 ## Instructions: 
-This project is currently hosted on Firebase! You can access the project with the link in the description or visit it [here](https://project-host-test-1c4bb.firebaseapp.com/submit).
-
 You can use the Bill Search view, the navigation item in the menu bar at the top, to start searching for legislation, but you'll have to sign in or create an account to use the collecting and tracking features.
 
 ### Sample Data and Test Account
