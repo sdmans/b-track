@@ -1,7 +1,7 @@
 # Legislation Tracker
 Search for legislation using the [Legiscan API](https://legiscan.com/legiscan) and add them to a collection to keep track of them!
 
-__Note:__ Instructions for using the application can be found at the bottom of of this document. You can also access them with this (link)[##instructions]!
+__Note:__ Instructions for using the application can be found at the bottom of of this document. You can also access them with this (link)[#instructions]!
 
 ## Main Features:
 1. Users should be able to search for specific state legislation
