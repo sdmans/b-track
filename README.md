@@ -64,7 +64,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 You can also access this view using the Bill Search link in the navigation menu at the top. You can use this page to start searching for legislation, but you'll have to sign in or create an account to use the collecting and tracking features.
 
 ### Sample Data and Test Account
-I'm creating a test account for the project. Credentials will be available here soon!
+Use this test account to access the project:
+__Email:__ testuser@testmail.com
+
+__Password:__ testpw
+
 
 Here's a list of sample identification numbers you can use to retrieve information on prior legislation with the search view:\
 __ID:__ 789\
@@ -83,6 +87,8 @@ In the list view, you'll see each of the bills you've added to your collection w
 Clicking the light blue "Edit Bill" button to the right of the Last Action for each bill will allow you to edit the Category, Action, and Action Date. 
 
 Below the Action History list, you'll see three buttons. Here's a description of what they do:
-* Update Bill: Once you've checked the status then, if an update is available, you can apply that update to the listed bill and then some of the data will change.
-* Check Status: Check if updates are available for the selected bill. This will check the latest information available in the API but that may not change very often. To test this feature manually, you can change the status using the light blue "Edit Bill" button next to last action for that bill by making a small change.
-* Delete: Delete the bill from your collection.
+* __Update Bill:__ Once you've checked the status then, if an update is available, you can apply that update to the listed bill and then some of the data will change.
+* __Check Status:__ Check if updates are available for the selected bill. This will check the latest information available in the API but that may not change very often. To test this feature manually, you can change the status using the light blue "Edit Bill" button next to last action for that bill by making a small change.
+* __Delete:__ Delete the bill from your collection.
+
+Using these features, you'll be able to create a list of different legislation that you can access and maintain from a single page.
