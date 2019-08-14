@@ -3,7 +3,7 @@ Search for legislation using the [Legiscan API](https://legiscan.com/legiscan) a
 
 This project is currently hosted on Firebase! You can access the project with the link in the description or visit it [here](https://project-host-test-1c4bb.firebaseapp.com/submit).
 
-__Note:__ Instructions for using the application can be found at the bottom of of this document. You can also access them with this [link](#instructions)!
+__Note:__ [Instructions](#instructions) for using the application can be found at the bottom of of this document.
 
 ## Main Features:
 1. Users should be able to search for specific state legislation
