@@ -65,8 +65,8 @@ You can also access this view using the Bill Search link in the navigation menu 
 
 ### Sample Data and Test Account
 Use this test account to access the project:
-__Email:__ testuser@testmail.com
 
+__Email:__ testuser@testmail.com \
 __Password:__ testpw
 
 
